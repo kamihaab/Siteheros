@@ -54,7 +54,7 @@
             ?>
 
         <footer class="footer">
-    <a>Devenez le maître de votre destin...</a>
+    <a>Devenez le maître de votre destin...coucou</a>
 </footer>    </div>
 
     <!-- jQuery -->
