@@ -2,23 +2,36 @@ body{
     background-color:#F1DCC9;
 }
 h1{
+    margin:0;
     font-size:300%;
 }
-nav {
+h2{
+    font-size: 200%;
+}
+header {
     padding-left: 5%;
     padding-right: 1%;
     background-color: #42313A;
     color:#F1DCC9;
   }
 .StoryContainer{
+
     margin: auto;
-    width:100%;
     display:flex;
     flex-wrap:wrap;
 }
 .Story{
     margin:4%;
-    height:42vw;
-    width:42%;
-    background-color: red;
+    min-height:42vw;
+
+    min-width:42%;
+    background-color: #9F4636;  
+    text-align: center;
+    overflow-y:auto;
+}
+.imgStory{
+
+    margin:2%;
+    width: 95%;
+    height: 80%;
 }
