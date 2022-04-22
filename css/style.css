@@ -1,0 +1,24 @@
+body{
+    background-color:#F1DCC9;
+}
+h1{
+    font-size:300%;
+}
+nav {
+    padding-left: 5%;
+    padding-right: 1%;
+    background-color: #42313A;
+    color:#F1DCC9;
+  }
+.StoryContainer{
+    margin: auto;
+    width:100%;
+    display:flex;
+    flex-wrap:wrap;
+}
+.Story{
+    margin:4%;
+    height:42vw;
+    width:42%;
+    background-color: red;
+}
