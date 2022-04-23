@@ -5,9 +5,7 @@ h1{
     margin:0;
     font-size:300%;
 }
-h2{
-    font-size: 200%;
-}
+
 header {
     padding-left: 5%;
     padding-right: 1%;
@@ -15,23 +13,18 @@ header {
     color:#F1DCC9;
   }
 .StoryContainer{
-
-    margin: auto;
-    display:flex;
+    justify-content: center;
+    display:flex;   
     flex-wrap:wrap;
 }
 .Story{
-    margin:4%;
-    min-height:42vw;
-
-    min-width:42%;
     background-color: #9F4636;  
     text-align: center;
-    overflow-y:auto;
 }
 .imgStory{
-
-    margin:2%;
-    width: 95%;
-    height: 80%;
+    display:block;
+    padding:10px ;
+}
+.titre{
+    font-size: 200%;
 }
