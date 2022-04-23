@@ -1,3 +1,5 @@
+<!-- requêtes --> 
+
 <?php
             $sql = "SELECT * FROM histoire";
             $res = $BDD->query($sql); //execute la requete
@@ -9,3 +11,6 @@
             </article><?php
             }
             ?>
+
+<!-- Idées : - dans la navbar, si on clique sur "le site dont tu es le géro" ça remonte en haut 
+         faire une ancre et un href -->
