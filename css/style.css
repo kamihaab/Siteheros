@@ -6,10 +6,17 @@ body{
     background-color:#F1DCC9;
 }
 h1{
-    font-size:7vw;
+    font-size:5vw;
 }
 h2{
     font-size: 2em;
+}
+h3
+{
+    font-size: 1.5em;
+    color:#F1DCC9;
+    margin-left: 1%;
+    text-align: left;
 }
 a{
     color:#42313a;
@@ -20,15 +27,14 @@ header {
     background-color: #42313A;
     color:#F1DCC9;
   }
+  .StoryContainer{
+    margin:5vw;
+    display:flex;   
+    flex-wrap:wrap;
+}
+
 
   @media screen and (max-width:1024px){
-    .StoryContainer{
-        margin:1%;
-        justify-content: space-around;
-        display:flex;   
-        flex-wrap:wrap;
-    }
-    
     .Story{
         margin:1%;
         background-color: #9F4636;  
@@ -36,21 +42,13 @@ header {
         width:98%;
     }
     .imgStory{
-        margin:1%;
         width:98%;
-
-        object-fit: cover;
+        height: 50vw;
+        object-fit:fill;
     }
 }
 
 @media screen and (min-width:1024px){
-.StoryContainer{
-    margin:1%;
-    justify-content: space-around;
-    display:flex;   
-    flex-wrap:wrap;
-}
-
 .Story{
     margin:1%;
     background-color: #9F4636;  
@@ -58,9 +56,10 @@ header {
     width:48%;
 }
 .imgStory{
-    margin:1%;
     width:98%;
-    object-fit: cover;
+    height: 25vw;
+    object-fit:fill;
 }
+
 }
 
