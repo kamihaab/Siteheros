@@ -1,24 +1,113 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 body{
     background-color:#F1DCC9;
 }
-h1{
-    font-size:300%;
+.bouton 
+{
+    font-size: 2.5vw ;
+    background-color:#6C2D2C ;
+    color:white;
+    border-radius: 2.5vw;
+    padding:0.5vw;
+    text-decoration: none;
+    z-index: 99;
+    display:inline;
 }
-nav {
+main{
+    margin:5vw; 
+    text-align: center;
+}
+.imageCentrale{
+    width:70vw;
+    height:40vw;
+}
+.bouton:hover{
+    background-color:#814241 ;
+}
+.connexion{
+    top:0.75vw;
+    position:absolute;
+    right:5vw;
+}
+.commencerHistoire
+{
+    font-size: 4vmin;
+}
+.retour
+{
+    top:7.5vw;
+    left:2.5vw;
+    position:absolute;
+
+}
+h1{
+    font-size:5vw;
+    display:inline;
+}
+h2{
+    font-size: 2em;
+    display: inline;
+}
+h3
+{
+    font-size: 1.5em;
+    color:#F1DCC9;
+    margin-left: 1%;
+    text-align: left;
+}
+a{
+    color:#42313a;
+}
+header {
     padding-left: 5%;
     padding-right: 1%;
     background-color: #42313A;
     color:#F1DCC9;
   }
-.StoryContainer{
-    margin: auto;
-    width:100%;
-    display:flex;
-    flex-wrap:wrap;
+  .StoryContainer{
+    display:flex;   
+    flex-wrap:wrap; 
+
+}
+p{
+    font-size: 1em;
 }
 .Story{
-    margin:4%;
-    height:42vw;
-    width:42%;
-    background-color: red;
+    margin:1%;
+    background-color: #9F4636;  
+    text-align: center;
 }
+.Story:hover{
+    background-color: #6C2D2C;
+}
+.Story:hover h2{
+    color: #F1DCC9;
+}
+.imgStory{
+    width:98%;
+    height: 25vw;
+    object-fit:fill;
+}
+
+  @media screen and (max-width:1024px){
+    .Story{
+        width:98%;
+    }
+    .imgStory{
+        height: 50vw;
+    }
+}
+
+@media screen and (min-width:1024px){
+.Story{
+    width:48%;
+}
+.imgStory{
+    height: 25vw;
+}
+
+}
+
