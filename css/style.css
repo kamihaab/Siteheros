@@ -20,6 +20,10 @@ main{
     margin:5vw; 
     text-align: center;
 }
+.imageCentrale{
+    width:70vw;
+    height:40vw;
+}
 .bouton:hover{
     background-color:#814241 ;
 }
@@ -27,6 +31,10 @@ main{
     top:0.75vw;
     position:absolute;
     right:5vw;
+}
+.commencerHistoire
+{
+    font-size: 4vmin;
 }
 .retour
 {
