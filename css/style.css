@@ -5,11 +5,43 @@
 body{
     background-color:#F1DCC9;
 }
+.bouton 
+{
+    font-size: 2.5vw ;
+    background-color:#6C2D2C ;
+    color:white;
+    border-radius: 2.5vw;
+    padding:0.5vw;
+    text-decoration: none;
+    z-index: 99;
+    display:inline;
+}
+main{
+    margin:5vw; 
+    text-align: center;
+}
+.bouton:hover{
+    background-color:#814241 ;
+}
+.connexion{
+    top:0.75vw;
+    position:absolute;
+    right:5vw;
+}
+.retour
+{
+    top:7.5vw;
+    left:2.5vw;
+    position:absolute;
+
+}
 h1{
     font-size:5vw;
+    display:inline;
 }
 h2{
     font-size: 2em;
+    display: inline;
 }
 h3
 {
@@ -28,37 +60,45 @@ header {
     color:#F1DCC9;
   }
   .StoryContainer{
-    margin:5vw;
     display:flex;   
-    flex-wrap:wrap;
+    flex-wrap:wrap; 
+
 }
-
-
-  @media screen and (max-width:1024px){
-    .Story{
-        margin:1%;
-        background-color: #9F4636;  
-        text-align: center;
-        width:98%;
-    }
-    .imgStory{
-        width:98%;
-        height: 50vw;
-        object-fit:fill;
-    }
+p{
+    font-size: 1em;
 }
-
-@media screen and (min-width:1024px){
 .Story{
     margin:1%;
     background-color: #9F4636;  
     text-align: center;
-    width:48%;
+}
+.Story:hover{
+    background-color: #6C2D2C;
+}
+.Story:hover h2{
+    color: #F1DCC9;
 }
 .imgStory{
     width:98%;
     height: 25vw;
     object-fit:fill;
+}
+
+  @media screen and (max-width:1024px){
+    .Story{
+        width:98%;
+    }
+    .imgStory{
+        height: 50vw;
+    }
+}
+
+@media screen and (min-width:1024px){
+.Story{
+    width:48%;
+}
+.imgStory{
+    height: 25vw;
 }
 
 }
