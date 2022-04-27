@@ -9,12 +9,16 @@
 </head>
 
 <body>
-    <header>
-        <h1> Le Site dont tu es le Héros
-        </h1>
-        <a class="bouton connexion" href="login.php">Connexion</a>
-    </header>
+<?php include "Header.php"?>
+    <main>
+        <h2>Fait chaud</h2>
+    <br><br><br><br><br>
+    <p>Le sable ca pique, il faut agir !</p>
+    <br><br><br>
+    <a class="bouton choix">Sauter</a>
+    <a class="bouton choix">Courir</a>
     </main>
+
 
 
 </body>

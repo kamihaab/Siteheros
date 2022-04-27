@@ -9,13 +9,8 @@
 </head>
 
 <body>
-    <header>
-        <h1> Le Site dont tu es le Héros
-        </h1>
-        <a class="bouton connexion" href="login.php">Connexion</a>
-    </header>
+<?php include "Header.php"?>
     <main >
-        <a class="bouton retour" href="index.html">Retour</a>
         <h2>Fait chaud</h2>
     </br>
         <img class="imageCentrale" src="../images/desert.jpg" alt="image de desert">
@@ -23,7 +18,7 @@
             L'alcool c'est de l'eau. Une fois j'ai vu un lapin et ... il était très beau
         </p>
         </br>
-        <a class="bouton commencerHistoire" href="branche.html"> Commencer une nouvelle histoire</a>
+        <a class="bouton commencerHistoire" href="branche.php"> Commencer une nouvelle histoire</a>
     </main>
 
 

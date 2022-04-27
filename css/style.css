@@ -16,6 +16,10 @@ body{
     z-index: 99;
     display:inline;
 }
+
+.choix{
+    margin:3vw;
+}
 main{
     margin:5vw; 
     text-align: center;
@@ -46,14 +50,15 @@ main{
 h1{
     font-size:5vw;
     display:inline;
+    color:#F1DCC9;
 }
 h2{
-    font-size: 2em;
+    font-size: 3.5em;
     display: inline;
 }
 h3
 {
-    font-size: 1.5em;
+    font-size: 3em;
     color:#F1DCC9;
     margin-left: 1%;
     text-align: left;
@@ -73,7 +78,7 @@ header {
 
 }
 p{
-    font-size: 1em;
+    font-size: 2.5em;
 }
 .Story{
     margin:1%;

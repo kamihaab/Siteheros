@@ -1,5 +1,8 @@
 drop table if exists user;
-drop table if exists movie;
+drop table if exists branche;
+drop table if exists histoire;
+drop table if exists histoireEnCours;
+drop table if exists brancheabranche;
 
 create table user(
     usr_id integer not null primary key auto_increment,

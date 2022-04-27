@@ -1,3 +1,6 @@
+<?php 
+    require_once('connect.php');
+?>
 <!doctype html>
 <html>
 
@@ -9,17 +12,26 @@
 </head>
 
 <body>
-    <header>
-        <h1> Le Site dont tu es le Héros
-        </h1>
-        <a class="bouton connexion" href="login.php">Connexion</a>
-    </header>
 
+<?php include "Header.php"?>
     <main class="StoryContainer">
+    <div class="Story">
+        <?php
+        $sql=SELECT * FROM hisoire WHERE histoire_id=1;
+        $res=
+        ?>
+            <h3>En cours</h3>
+                <a href="pageHistoire.php?name='Fait chaud'">
         
+                <img class="imgStory" src="../images/desert.jpg" alt="image de Zenitsu">
+                <h2>Fait chaud</h2>
+            </a>
+        </div>
+        
+
         <div class="Story">
             <h3>En cours</h3>
-                <a href="pageHistoire.html?name='Fait chaud'">
+                <a href="pageHistoire.php?name='Fait chaud'">
         
                 <img class="imgStory" src="../images/desert.jpg" alt="image de Zenitsu">
                 <h2>Fait chaud</h2>

@@ -1,2 +1,16 @@
-insert into movie values
-(1, "Le Loup de Wall Street", "Le Loup de Wall Street (The Wolf of Wall Street) est un film américain réalisé par Martin Scorsese sorti en 2013. Adaptation de l'autobiographie éponyme de Jordan Belfort, il s'agit du plus gros succès commercial de Martin Scorsese.", "Le Loup de Wall Street (The Wolf of Wall Street) est un film américain réalisé par Martin Scorsese sorti en 2013. Inspiré d'une histoire réelle, il raconte l'ascension d'un courtier en bourse, Jordan Belfort interprété par Leonardo DiCaprio, vers la gloire, la fortune et les malversations au cœur des années 1980, le menant à la chute et à une forme de rédemption. Adaptation de l'autobiographie éponyme de Jordan Belfort, il s'agit du ",,;
+DELETE FROM user;
+ALTER TABLE user auto_increment=1;
+
+DELETE FROM  branche  ;
+ALTER TABLE branche auto_increment=1;
+
+DELETE FROM histoire ;
+ALTER TABLE histoire auto_increment=1;
+
+DELETE FROM  histoireEnCours;
+DELETE FROM brancheabranche;
+
+insert into histoire(histoire_titre,histoire_image,histoire_resume) values
+("OUIIIIIIIIII","../images/escargot.jpg","WHEEEEEEEEEEEEEEEEEEEE, cet escargot refait votre journée"),
+("LEEEEE RATATAT","../images/ratatouille.jpg","Vous incarnez un rat, WOWOWOWOOWOWOWOWOWO!!!!"),
+("UNEE patatae","../images/patate.jpg","Epreuve : éplucher la patate");
