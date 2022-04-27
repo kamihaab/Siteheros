@@ -1,5 +1,5 @@
-<?php 
-    require_once('connect.php');
+<?php
+require_once('connect.php');
 ?>
 <!doctype html>
 <html>
@@ -13,80 +13,26 @@
 
 <body>
 
-<?php include "Header.php"?>
+    <?php include "Header.php" ?>
     <main class="StoryContainer">
-    <div class="Story">
         <?php
-        $sql=SELECT * FROM hisoire WHERE histoire_id=1;
-        $res=
+        $sql = "SELECT * FROM histoire    ";
+        $res = $bdd->query($sql);
+        while ($ligne = $res->fetch()) {
         ?>
-            <h3>En cours</h3>
+            <div class="Story">
+                <?php $nomImage = $ligne['histoire_image']; ?>
+                <?php $titre = $ligne['histoire_titre']; ?>
+
+                <h3>En cours</h3>
                 <a href="pageHistoire.php?name='Fait chaud'">
-        
-                <img class="imgStory" src="../images/desert.jpg" alt="image de Zenitsu">
-                <h2>Fait chaud</h2>
-            </a>
-        </div>
-        
-
-        <div class="Story">
-            <h3>En cours</h3>
-                <a href="pageHistoire.php?name='Fait chaud'">
-        
-                <img class="imgStory" src="../images/desert.jpg" alt="image de Zenitsu">
-                <h2>Fait chaud</h2>
-            </a>
-        </div>
-        <div class="Story">
-            <h3>En cours</h3>
-                <a href="https://askcodez.com/sensible-galerie-dimage-a-laide-de-css-flexbox-ou-une-grille-de-mise-en-page.html">
-        
-                <img class="imgStory" src="../images/mer.jpg" alt="image de Zenitsu">
-                <h2>L'eau ca mouille</h2>
-            </a>
-        </div>
-    <div class="Story">
-        <h3>En cours</h3>
-            <a href="https://askcodez.com/sensible-galerie-dimage-a-laide-de-css-flexbox-ou-une-grille-de-mise-en-page.html">
-    
-            <img class="imgStory" src="../images/desert.jpg" alt="image de Zenitsu">
-            <h2>Fait chaud</h2>
-        </a>
-    </div>
-    <div class="Story">
-        <h3>En cours</h3>
-            <a href="https://askcodez.com/sensible-galerie-dimage-a-laide-de-css-flexbox-ou-une-grille-de-mise-en-page.html">
-    
-            <img class="imgStory" src="../images/mer.jpg" alt="image de Zenitsu">
-            <h2>L'eau ca mouille</h2>
-        </a>
-    </div>
-
-    <div class="Story">
-        <h3>En cours</h3>
-            <a href="https://askcodez.com/sensible-galerie-dimage-a-laide-de-css-flexbox-ou-une-grille-de-mise-en-page.html">
-    
-            <img class="imgStory" src="../images/Zenitsu.jpg" alt="image de Zenitsu">
-            <h2> Zenistu l'Eclair</h2>
-        </a>
-    </div>
-    <div class="Story">
-        <h3>En cours</h3>
-            <a href="https://askcodez.com/sensible-galerie-dimage-a-laide-de-css-flexbox-ou-une-grille-de-mise-en-page.html">
-    
-            <img class="imgStory" src="../images/desert.jpg" alt="image de Zenitsu">
-            <h2>Fait chaud</h2>
-        </a>
-    </div>
-    <div class="Story">
-        <h3>En cours</h3>
-            <a href="https://askcodez.com/sensible-galerie-dimage-a-laide-de-css-flexbox-ou-une-grille-de-mise-en-page.html">
-    
-            <img class="imgStory" src="../images/Zenitsu.jpg" alt="image de Zenitsu">
-            <h2> Zenistu l'Eclair</h2>
-        </a>
-    </div>
-
+                    <img class="imgStory" src="../images/<?= $nomImage ?>.jpg" alt="image de <?= $nomImage ?>">
+                    <h2><?= $titre ?></h2>
+                </a>
+            </div>
+        <?php
+        }
+        ?>
     </main>
 
 </body>
