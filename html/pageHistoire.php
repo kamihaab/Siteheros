@@ -22,6 +22,7 @@ require_once('connect.php')
             $res=$bdd->query($sql);
             $ligne=$res->fetch();
 
+            $idbranche=$ligne['histoire_branche_id'];
             $nomImage = $ligne['histoire_image'];
             $titre = $ligne['histoire_titre'];
             $resume=$ligne['histoire_resume'];
@@ -34,7 +35,7 @@ require_once('connect.php')
                 <?= $resume?>
             </p>
             </br>
-            <a class="bouton commencerHistoire" href="branche.php"> Commencer une nouvelle histoire</a>
+            <a class="bouton commencerHistoire" href="branche.php?id=<?=$idbranche?>"> Commencer une nouvelle histoire</a>
         <?php
         }
         ?>
