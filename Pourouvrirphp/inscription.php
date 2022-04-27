@@ -79,8 +79,7 @@ if (isset($_SESSION['id'])){
                 <?php if (isset($error)) { ?>
             <div class="alert alert-danger">
                 <strong>Erreur !</strong> <?= $error ?>
-            </div>
-        <?php } ?>
+            </div> <?php } ?>
 
                 <label><b>Nom </b></label>
                 <input type="text" placeholder="Entrer votre nom" name="name" required>
