@@ -1,3 +1,6 @@
+<?php
+require_once('connect.php')
+?>
 <!doctype html>
 <html>
 
@@ -9,16 +12,34 @@
 </head>
 
 <body>
-<?php include "Header.php"?>
-    <main >
-        <h2>Fait chaud</h2>
-    </br>
-        <img class="imageCentrale" src="../images/desert.jpg" alt="image de desert">
-        <p>
-            L'alcool c'est de l'eau. Une fois j'ai vu un lapin et ... il était très beau
-        </p>
-        </br>
-        <a class="bouton commencerHistoire" href="branche.php"> Commencer une nouvelle histoire</a>
+    <?php include "Header.php" ?>
+    <main>
+        <?php
+        if (isset($_GET['name'])) {
+        ?>
+            <?php 
+            $sql='SELECT * FROM histoire WHERE histoire_titre=\''.addslashes($_GET["name"]).'\'';
+            $res=$bdd->query($sql);
+            $ligne=$res->fetch();
+
+            $idbranche=$ligne['histoire_branche_id'];
+            $nomImage = $ligne['histoire_image'];
+            $titre = $ligne['histoire_titre'];
+            $resume=$ligne['histoire_resume'];
+            ?>
+
+            <h2><?=$titre?></h2>
+            </br>
+            <img class="imageCentrale" src="../images/<?= $nomImage ?>.jpg" alt="image de <?= $nomImage ?>">
+            <p>
+                <?= $resume?>
+            </p>
+            </br>
+            <a class="bouton commencerHistoire" href="branche.php?id=<?=$idbranche?>"> Commencer une nouvelle histoire</a>
+        <?php
+        }
+        ?>
+
     </main>
 
 
