@@ -1,4 +1,5 @@
 <?php //Inscription php : vérification des données entrées 
+require_once "../sql/connexionBDD.php";
 session_start();
 //include('../sql/connexionBDD.php'); //je sais pas si c'est nécessaire 
 // S'il y a une session alors on ne retourne plus sur cette page
@@ -70,10 +71,8 @@ if (isset($_SESSION['id'])){
         <link rel="stylesheet" href="../css/stylelogin.css"/>
     </head>
     <body>
-        <div class="container">
-            <!--inscription html-->
-            
-            <form action="verification.php" name="inscription" method="POST">
+        <div class="container"><!--inscription html-->
+         <form action="verification.php" name="inscription" method="POST">
                 <h1>Inscription</h1>
 
                 <?php if (isset($error)) { ?>
