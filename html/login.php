@@ -10,7 +10,7 @@ if (!empty($_POST['login']) and !empty($_POST['password'])) {
     if ($stmt->rowCount() == 1) {
         // Authentication successful
         $_SESSION['login'] = $login;
-        redirect("index.php");
+        redirect("../html/index.php");
     }
     else {
         $error = "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
@@ -30,12 +30,15 @@ if (!empty($_POST['login']) and !empty($_POST['password'])) {
                 <h1>Connexion</h1>
                 
                 <label><b>Nom d'utilisateur</b></label>
-                <input type="text" placeholder="Entrer le nom d'utilisateur" name="username" required>
+                <input type="text" placeholder="Entrer le nom d'utilisateur" name="login" required>
 
                 <label><b>Mot de passe</b></label>
                 <input type="password" placeholder="Entrer le mot de passe" name="password" required>
 
                 <input type="submit" id='submit' class="submit" value='SE CONNECTER' >
+
+                <label><b>Vous n'avez pas de compte? Inscrivez-vous en cliquant </b></label>
+                <a href="../Pourouvrirphp/incription.php"> ici </a>
                 
                 <?php if (isset($error)) { ?>
             <div class="alert alert-danger">

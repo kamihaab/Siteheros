@@ -61,3 +61,10 @@ input[type=submit]:hover {
 .submit {
     font-size: larger;
 }
+a:link {
+    color : white;  
+}
+a:hover {
+    color : #8a3b2c;
+
+}
