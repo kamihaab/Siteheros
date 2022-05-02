@@ -63,6 +63,7 @@ if (isset($_SESSION['id'])){
         exit;
       }
     }
+  }
 ?>
 <html>
     <head>
