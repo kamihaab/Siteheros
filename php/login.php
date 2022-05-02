@@ -12,7 +12,7 @@ if (!empty($_POST['login']) and !empty($_POST['password'])) {
         $row=$stmt->fetch();
         $_SESSION['login'] = $login;
         $_SESSION['loggedin'] = true;
-        $_SESSION['estAdmin'] = $row['estAdmin'];
+        $_SESSION['estAdmin'] =$row['usr_estAdmin'];
         header('Location: index.php');
         exit;
     }

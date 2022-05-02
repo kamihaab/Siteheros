@@ -1,5 +1,6 @@
 <?php
-require_once('fonctions/connect.php')
+require_once('fonctions/connect.php');
+session_start();
 ?>
 <!doctype html>
 <html>
@@ -19,21 +20,32 @@ require_once('fonctions/connect.php')
         ?>
             <?php
 
+            if (isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true && isset($_FILES['file'])) {
+                $tmpName = $_FILES['file']['tmp_name'];
+                $fullname = $_FILES['file']['name'];
+                $name=explode('.',$fullname)[0]; //split string when there is a "." so full name is with png jpg etc
+
+                move_uploaded_file($tmpName, '../images/' . $fullname);
+
+                $sql = "UPDATE histoire
+                SET histoire_image='$name'
+                WHERE histoire_titre=".'\''.$_GET['name'].'\'';
+                $bdd->query($sql);
+            }
+
             $sql = 'SELECT * FROM histoire WHERE histoire_titre=\'' . addslashes($_GET["name"]) . '\'';
             $res = $bdd->query($sql);
             $ligne = $res->fetch();
 
             $idbranche = $ligne['histoire_branche_id'];
-            $nomImage = $ligne['histoire_image'];
+            
+            $images=glob("../images/".$ligne['histoire_image'].'.{jpg,png}',GLOB_BRACE);
+            $nomImage = $images[0];
             $titre = $ligne['histoire_titre'];
             $resume = $ligne['histoire_resume'];
 
 
-            if (isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true && isset($_FILES['file'])) {
-                $tmpName = $_FILES['file']['tmp_name'];
-                $name = $_FILES['file']['name'];
-                move_uploaded_file($tmpName, '../images/' . $name);
-            }
+
             ?>
 
 
@@ -50,7 +62,7 @@ require_once('fonctions/connect.php')
             ?>
 
             </br>
-            <img class="imageCentrale" src="../images/<?= $nomImage ?>.jpg" alt="image de <?= $nomImage ?>">
+            <img class="imageCentrale" src="<?= $nomImage?>" alt="image de <?= $nomImage ?>">
             <?php
             if (isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true) {
             ?>

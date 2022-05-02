@@ -1,5 +1,6 @@
 <?php
-require_once('fonctions/connect.php')
+require_once('fonctions/connect.php');
+session_start();
 ?>
 <!doctype html>
 <html>
@@ -20,12 +21,13 @@ require_once('fonctions/connect.php')
             $res=$bdd->query($sql);
             $ligne=$res->fetch();
 
-            $nomImage = $ligne['branche_image'];
+            $images=glob("../images/".$ligne['branche_image'].'.{jpg,png}',GLOB_BRACE);
+            $nomImage = $images[0];
             $titre = $ligne['branche_titre'];
             $paragraphe=$ligne['branche_paragraphe'];
             ?>
 
-            <img class="FondBranche" src="../images/<?= $nomImage ?>.jpg" alt="image de <?= $nomImage ?>">
+            <img class="FondBranche" src="<?= $nomImage ?>" alt="image de <?= $nomImage ?>">
             <h2><?=$titre?></h2>
             <br><br><br><br><br>
             <p><?=$paragraphe?></p>

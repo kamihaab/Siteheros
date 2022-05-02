@@ -24,13 +24,14 @@ session_start();
         ?>
             <div class="Story">
                 <?php
-                $nomImage = $ligne['histoire_image'];
+                $images=glob("../images/".$ligne['histoire_image'].'.{jpg,png}',GLOB_BRACE);
+                $nomImage = $images[0];
                 $titre = $ligne['histoire_titre'];
                 ?>
 
                 <h3>En cours</h3>
                 <a href="pageHistoire.php?name=<?=$titre?>">
-                    <img class="imgStory" src="../images/<?= $nomImage ?>.jpg" alt="image de <?= $nomImage ?>">
+                    <img class="imgStory" src="<?= $nomImage ?>" alt="image de <?= $nomImage ?>">
                     <h2><?= $titre ?></h2>
                 </a>
             </div>
