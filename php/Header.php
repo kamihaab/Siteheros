@@ -8,7 +8,7 @@
 //Don't forget session_start in other pages 
     if (isset( $_SESSION['loggedin'])&& $_SESSION['loggedin']==true)
     {
-        ?>
+        ?>Bienvenue, <?= $_SESSION['login']?>
         <a class="bouton connexion" href="fonctions/deconnexion.php">Se déconnecter</a>
         <?php
     }
