@@ -1,16 +1,17 @@
 <?php
-require_once "../sql/connexionBDD.php";
+require_once "../html/connect.php";
 session_start();
 
 if (!empty($_POST['login']) and !empty($_POST['password'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
-    $stmt = getDb()->prepare('select * from user where usr_login=? and usr_password=?');
+    $stmt = $bdd->prepare('select * from user where usr_login=? and usr_password=?');
     $stmt->execute(array($login, $password));
     if ($stmt->rowCount() != 0) {
         // Authentication successful
         $_SESSION['login'] = $login;
-        redirect("../html/index.php");
+        header('Location: ../html/index.php');
+        exit;
     }
     else {
         $error = "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";

@@ -83,8 +83,8 @@ session_start();
         
         $requete->execute(array($username,$password, $admin));
         //var_dump($requete);
-        //header('Location: ../html/index.php');
-        //exit;
+        header('Location: ../html/index.php');
+        exit;
       }
         
     
