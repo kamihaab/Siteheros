@@ -29,6 +29,7 @@ body{
     margin-left: -50%;
     margin-top: -50vh;
 }
+
 .droite{
     float:right;
 }
@@ -77,6 +78,15 @@ h1{
 h2{
     font-size: 3.5em;
     display: inline;
+}
+textarea{
+    width:60vw;
+    font-size: 3em;
+    text-align: center;
+    resize: vertical;
+}
+input,button{
+    font-size: 3rem;
 }
 h3
 {
