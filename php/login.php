@@ -1,5 +1,5 @@
 <?php
-require_once "../html/connect.php";
+require_once "../php/fonctions/connect.php";
 session_start();
 
 if (!empty($_POST['login']) and !empty($_POST['password'])) {
@@ -10,7 +10,8 @@ if (!empty($_POST['login']) and !empty($_POST['password'])) {
     if ($stmt->rowCount() != 0) {
         // Authentication successful
         $_SESSION['login'] = $login;
-        header('Location: ../html/index.php');
+        $_SESSION['loggedin'] = true;
+        header('Location: ../php/index.php');
         exit;
     }
     else {

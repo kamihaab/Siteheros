@@ -1,5 +1,5 @@
 <?php
-    require_once('connect.php');
+    require_once('fonctions/connect.php');
 ?><!doctype html>
 <html>
 

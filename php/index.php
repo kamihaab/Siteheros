@@ -1,5 +1,6 @@
 <?php
-require_once('connect.php');
+require_once('fonctions/connect.php');
+session_start();
 ?>
 <!doctype html>
 <html>
@@ -14,6 +15,7 @@ require_once('connect.php');
 <body>
 
     <?php include "Header.php" ?>
+
     <main class="StoryContainer">
         <?php
         $sql = "SELECT * FROM histoire    ";

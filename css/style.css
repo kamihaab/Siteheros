@@ -28,10 +28,19 @@ body{
     
     margin-left: -50%;
     margin-top: -50vh;
-
+}
+.droite{
+    float:right;
+}
+#poubelle{
+    width:8vw;
+    height:8vw;
 }
 .choix{
     margin:3vw;
+}
+.breakword{
+    word-wrap: break-word;
 }
 main{
     margin:5vw; 
