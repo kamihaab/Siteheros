@@ -7,7 +7,7 @@ if (!empty($_POST['login']) and !empty($_POST['password'])) {
     $password = $_POST['password'];
     $stmt = getDb()->prepare('select * from user where usr_login=? and usr_password=?');
     $stmt->execute(array($login, $password));
-    if ($stmt->rowCount() == 1) {
+    if ($stmt->rowCount() != 0) {
         // Authentication successful
         $_SESSION['login'] = $login;
         redirect("../html/index.php");
@@ -26,7 +26,7 @@ if (!empty($_POST['login']) and !empty($_POST['password'])) {
         <div class="container">
             <!-- zone de connexion -->
             
-            <form action="verification.php" method="POST">
+            <form action="login.php" method="POST">
                 <h1>Connexion</h1>
                 
                 <label><b>Nom d'utilisateur</b></label>
