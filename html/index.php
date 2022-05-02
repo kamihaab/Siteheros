@@ -14,6 +14,7 @@ require_once('connect.php');
 <body>
 
     <?php include "Header.php" ?>
+    <a href="test.php"> test</a>
     <main class="StoryContainer">
         <?php
         $sql = "SELECT * FROM histoire    ";
