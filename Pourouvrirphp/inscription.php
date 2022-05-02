@@ -20,6 +20,8 @@ if (isset($_SESSION['id'])){
       $username = htmlentities(trim($username));
       $password = trim($password); // On récupère le mot de passe 
       $confmdp = trim($confpassword); // On récupère la confirmation du mot de passe
+
+      
  
       // Vérification du nom
       if(empty($name)){
@@ -58,8 +60,14 @@ if (isset($_SESSION['id'])){
         $password = crypt($password, "$6$rounds=5000$macleapersonnaliseretagardersecret$"); //le fameux hachage de mot de passe
  
         // On insert nos données dans la table user (Pour les admin faire un if si jamais ils ont coché admin?)
-        $DB->insert("INSERT INTO user (usr_login, usr_password) VALUES (?, ?)", array($username,$password));
+        $DB->insert("INSERT INTO user (usr_login, usr_password,usr_estAdmin) VALUES (?, ?,?)", array($username,$password,$admin));
         header('Location: index.php');
+        if (isset($_POST["admin"])){
+          $admin = true;
+        }
+        else{
+          $admin=false;
+        }
         exit;
       }
     }
@@ -95,6 +103,9 @@ if (isset($_SESSION['id'])){
 
                 <label><b>Confirmation du mot de passe</b></label>
                 <input type="password" placeholder="Confirmer le mot de passe" name="confpassword" required>
+
+                <label><b>Vous êtes administrateur</b></label>
+                <input type="checkbox" value="true" placeholder="Administrateur" name="admin">
 
                 <input type="submit" id='submit' class="submit" value='SINSCRIRE' >
             </form>
