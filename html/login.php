@@ -38,7 +38,7 @@ if (!empty($_POST['login']) and !empty($_POST['password'])) {
                 <input type="submit" id='submit' class="submit" value='SE CONNECTER' >
 
                 <label><b>Vous n'avez pas de compte? Inscrivez-vous en cliquant </b></label>
-                <a href="../Pourouvrirphp/incription.php"> ici </a>
+                <a href="../Pourouvrirphp/inscription.php"> ici </a>
                 
                 <?php if (isset($error)) { ?>
             <div class="alert alert-danger">
