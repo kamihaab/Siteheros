@@ -1,5 +1,5 @@
 <?php //Inscription php : vérification des données entrées 
-require_once "../html/connect.php";
+require_once "../php/fonctions/connect.php";
 session_start();
 //include('../sql/connexionBDD.php'); //je sais pas si c'est nécessaire 
 // S'il y a une session alors on ne retourne plus sur cette page
@@ -83,7 +83,7 @@ session_start();
         
         $requete->execute(array($username,$password, $admin));
         //var_dump($requete);
-        header('Location: ../html/index.php');
+        header('Location: ../php/index.php');
         exit;
       }
         

@@ -1,5 +1,5 @@
 <?php
-require_once('connect.php')
+require_once('fonctions/connect.php')
 ?>
 <!doctype html>
 <html>
@@ -29,9 +29,12 @@ require_once('connect.php')
             ?>
 
             <h2><?=$titre?></h2>
+            <a href="supprimeHistoire.php">
+            <img id="poubelle" class="droite" src=../images/poubelle.jpg alt="symbole Poubelle">
+            </a>
             </br>
             <img class="imageCentrale" src="../images/<?= $nomImage ?>.jpg" alt="image de <?= $nomImage ?>">
-            <p>
+            <p class="breakword">
                 <?= $resume?>
             </p>
             </br>
