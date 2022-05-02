@@ -17,28 +17,59 @@ require_once('fonctions/connect.php')
         <?php
         if (isset($_GET['name'])) {
         ?>
-            <?php 
-            $sql='SELECT * FROM histoire WHERE histoire_titre=\''.addslashes($_GET["name"]).'\'';
-            $res=$bdd->query($sql);
-            $ligne=$res->fetch();
+            <?php
 
-            $idbranche=$ligne['histoire_branche_id'];
+            $sql = 'SELECT * FROM histoire WHERE histoire_titre=\'' . addslashes($_GET["name"]) . '\'';
+            $res = $bdd->query($sql);
+            $ligne = $res->fetch();
+
+            $idbranche = $ligne['histoire_branche_id'];
             $nomImage = $ligne['histoire_image'];
             $titre = $ligne['histoire_titre'];
-            $resume=$ligne['histoire_resume'];
+            $resume = $ligne['histoire_resume'];
+
+
+            if (isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true && isset($_FILES['file'])) {
+                $tmpName = $_FILES['file']['tmp_name'];
+                $name = $_FILES['file']['name'];
+                move_uploaded_file($tmpName, '../images/' . $name);
+            }
             ?>
 
-            <h2><?=$titre?></h2>
-            <a href="supprimeHistoire.php">
-            <img id="poubelle" class="droite" src=../images/poubelle.jpg alt="symbole Poubelle">
-            </a>
+
+            <h2><?= $titre ?></h2>
+
+            <?php
+            if (isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true) {
+            ?>
+                <a href="fonctions/supprimeHistoire.php?name=<?= $_GET['name'] ?>">
+                    <img id="poubelle" class="droite" src=../images/poubelle.jpg alt="symbole Poubelle">
+                </a>
+            <?php
+            }
+            ?>
+
             </br>
             <img class="imageCentrale" src="../images/<?= $nomImage ?>.jpg" alt="image de <?= $nomImage ?>">
+            <?php
+            if (isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true) {
+            ?>
+                <form action="pageHistoire.php?name=<?= $_GET["name"] ?>" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="file">
+                    </br>
+                    <button type="submit">Enregistrer</button>
+                </form>
+                </br>
+
+            <?php
+            }
+            ?>
             <p class="breakword">
-                <?= $resume?>
+                <?= $resume ?>
             </p>
+
             </br>
-            <a class="bouton commencerHistoire" href="branche.php?id=<?=$idbranche?>"> Commencer une nouvelle histoire</a>
+            <a class="bouton commencerHistoire" href="branche.php?id=<?= $idbranche ?>"> Commencer une nouvelle histoire</a>
         <?php
         }
         ?>
