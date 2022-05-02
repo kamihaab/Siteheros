@@ -18,7 +18,7 @@ require_once('fonctions/connect.php')
         if (isset($_GET['name'])) {
         ?>
             <?php
-            
+
             $sql = 'SELECT * FROM histoire WHERE histoire_titre=\'' . addslashes($_GET["name"]) . '\'';
             $res = $bdd->query($sql);
             $ligne = $res->fetch();
@@ -28,28 +28,42 @@ require_once('fonctions/connect.php')
             $titre = $ligne['histoire_titre'];
             $resume = $ligne['histoire_resume'];
 
-            if(isset($_FILES['file'])){
+
+            if (isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true && isset($_FILES['file'])) {
                 $tmpName = $_FILES['file']['tmp_name'];
                 $name = $_FILES['file']['name'];
-                move_uploaded_file($tmpName, '../images/'.$name);
+                move_uploaded_file($tmpName, '../images/' . $name);
             }
             ?>
 
+
             <h2><?= $titre ?></h2>
 
-            <a  href="fonctions/supprimeHistoire.php?name=<?= $_GET['name'] ?>">
-                <img id="poubelle" class="droite" src=../images/poubelle.jpg alt="symbole Poubelle">
-            </a>
+            <?php
+            if (isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true) {
+            ?>
+                <a href="fonctions/supprimeHistoire.php?name=<?= $_GET['name'] ?>">
+                    <img id="poubelle" class="droite" src=../images/poubelle.jpg alt="symbole Poubelle">
+                </a>
+            <?php
+            }
+            ?>
 
             </br>
             <img class="imageCentrale" src="../images/<?= $nomImage ?>.jpg" alt="image de <?= $nomImage ?>">
-            
-            <form action="pageHistoire.php?name=<?=$_GET["name"]?>" method="POST" enctype="multipart/form-data">
-                <input type="file" name="file">
+            <?php
+            if (isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true) {
+            ?>
+                <form action="pageHistoire.php?name=<?= $_GET["name"] ?>" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="file">
+                    </br>
+                    <button type="submit">Enregistrer</button>
+                </form>
                 </br>
-                <button type="submit">Enregistrer</button>
-            </form>
-            </br>
+
+            <?php
+            }
+            ?>
             <p class="breakword">
                 <?= $resume ?>
             </p>

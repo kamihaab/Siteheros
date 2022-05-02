@@ -9,9 +9,11 @@ if (!empty($_POST['login']) and !empty($_POST['password'])) {
     $stmt->execute(array($login, $password));
     if ($stmt->rowCount() != 0) {
         // Authentication successful
+        $row=$stmt->fetch();
         $_SESSION['login'] = $login;
         $_SESSION['loggedin'] = true;
-        header('Location: ../php/index.php');
+        $_SESSION['estAdmin'] = $row['estAdmin'];
+        header('Location: index.php');
         exit;
     }
     else {
@@ -40,7 +42,7 @@ if (!empty($_POST['login']) and !empty($_POST['password'])) {
                 <input type="submit" id='submit' class="submit" value='SE CONNECTER' >
 
                 <label><b>Vous n'avez pas de compte? Inscrivez-vous en cliquant </b></label>
-                <a href="../Pourouvrirphp/inscription.php"> ici </a>
+                <a href="inscription.php"> ici </a>
                 
                 <?php if (isset($error)) { ?>
             <div class="alert alert-danger">
