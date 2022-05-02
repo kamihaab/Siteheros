@@ -33,13 +33,12 @@ session_start();
       $confpassword = trim($confpassword); // On récupère la confirmation du mot de passe
       $valid = true;
       */
-      $admin;
+      $admin='0';
       if (isset($_POST["admin"])){
         $admin = true;
       }
-      else{
-        $admin=false;
-      }
+      
+      
 
       
  
@@ -82,7 +81,7 @@ session_start();
         // On insert nos données dans la table user (Pour les admin faire un if si jamais ils ont coché admin?)
         $requete = $bdd->prepare("INSERT INTO user (`usr_login`, `usr_password`,`usr_estAdmin`) VALUES(?, ?, ?)"); 
         
-        $requete->execute(array($username,$password, true));
+        $requete->execute(array($username,$password, $admin));
         //var_dump($requete);
         //header('Location: ../html/index.php');
         //exit;
