@@ -84,6 +84,7 @@ if (isset($_SESSION['id'])){
                 <label><b>Nom </b></label>
                 <input type="text" placeholder="Entrer votre nom" name="name" required>
 
+                <label><b>Nom </b></label>
                 <input type="text" placeholder="Entrer votre prénom" name="surname" required>
 
                 <label><b>Nom d'utilisateur</b></label>
