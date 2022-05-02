@@ -55,10 +55,10 @@ if (isset($_SESSION['id'])){
       // Si "valid" est bien true, on peut procéder au traitement 
       if($valid){
         //On hâche le mot de passe
-        $password = crypt($mdp, "$6$rounds=5000$macleapersonnaliseretagardersecret$"); //le fameux hachage de mot de passe
+        $password = crypt($password, "$6$rounds=5000$macleapersonnaliseretagardersecret$"); //le fameux hachage de mot de passe
  
         // On insert nos données dans la table user (Pour les admin faire un if si jamais ils ont coché admin?)
-        $DB->insert("INSERT INTO user (usr_id, usr_login, usr_password) VALUES (, ?, ?)", array(,$username,$password));
+        $DB->insert("INSERT INTO user (usr_login, usr_password) VALUES (?, ?)", array($username,$password));
         header('Location: index.php');
         exit;
       }
