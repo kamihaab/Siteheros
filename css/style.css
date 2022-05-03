@@ -129,6 +129,44 @@ p{
     object-fit:fill;
 }
 
+
+.branche{
+    background-color: #9f463675;
+    font-size:2.5em ;
+    text-align: left;
+    margin:1%;
+    border-radius: 1rem;
+
+    
+}
+h4{
+    border-radius: 1rem;
+    background-color: #9f4636a9;
+    padding:1%;
+}
+.branche ul{
+    margin:1%;
+    list-style: none;
+    display: none;
+}
+.boutonbranche{
+    position:relative;
+    left:50%;
+    transform: translateX(-50%);
+    text-align: center;
+    display:inline-block;
+
+}
+li{
+    border-radius: 0.5rem;
+    background-color:#9F4636;
+    padding:1%;
+    margin:2%;
+}
+.branche:focus ul,.branche:active ul {
+    display:block;
+}
+
   @media screen and (max-width:1024px){
     .Story{
         width:98%;

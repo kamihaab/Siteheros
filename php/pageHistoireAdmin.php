@@ -65,7 +65,7 @@ session_start();
             $sql = "SELECT * FROM histoire WHERE histoire_id='$id'";
             $res = $bdd->query($sql);
             $ligne = $res->fetch();
-            
+
             $idbranche = $ligne['histoire_branche_id'];
 
             $images = glob("../images/" . $ligne['histoire_image'] . '.{jpg,png}', GLOB_BRACE);
@@ -110,7 +110,33 @@ session_start();
 
             </br>
             <a class="bouton commencerHistoire" href="branche.php?id=<?= $idbranche ?>"> Commencer une nouvelle histoire</a>
+            
+        </br>
+        </br>
+        <div class="branche" tabindex="0">
+            <h4>BRANCHE 1</h4>
+            <ul>       
+                <h5>Branche précédente:</h5>
+                <li> branche -1</li>
 
+                <h5>Branche suivante:</h5>
+                <li>branche2</li>
+                <li>branche3</li>
+                <a class="bouton boutonbranche" href="login.php">Changer la branche</a>
+            </ul>
+        </div>
+        <div class="branche" tabindex="0">
+            <h4>BRANCHE 222</h4>
+            <ul>       
+                <h5>Branche précédente:</h5>
+                <li> branche -1</li>
+
+                <h5>Branche suivante:</h5>
+                <li>branche2</li>
+                <li>branche3</li>
+                <a class="bouton boutonbranche" href="login.php">Changer la branche</a>
+            </ul>
+        </div>
         <?php
         }
         ?>
