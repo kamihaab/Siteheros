@@ -25,7 +25,7 @@ session_start();
             <div class="Story">
                 <?php
                 $images = glob("../images/" . $ligne['histoire_image'] . '.{jpg,png}', GLOB_BRACE);
-                $nomImage = $images[0];
+                $nomImage = $images[0]; //On m'indique une erreur ici? 
                 $titre = $ligne['histoire_titre'];
                 $id=$ligne['histoire_id'];
                 ?>
