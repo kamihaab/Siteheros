@@ -28,6 +28,15 @@ session_start();
 
                 $bdd-> query($sql);
             }
+            if (isset($_POST['resume']))
+            {
+                $resume=$_POST['resume'];
+                $sql="UPDATE histoire
+                SET histoire_resume='$resume'
+                WHERE histoire_id='$id'";
+
+                $bdd-> query($sql);
+            }
             if (isset($_FILES['file'])) {
                 $tmpName = $_FILES['file']['tmp_name'];
                 $fullname = $_FILES['file']['name'];
@@ -79,8 +88,13 @@ session_start();
             </form>
             </br>
 
+
             <p class="breakword">
-                <?= $resume ?>
+               <form action="pageHistoireAdmin.php?id=<?=$id?> " method="POST">
+                <textarea  name="resume"><?=$resume?> </textarea>
+        </br>
+                <button type="submit">Enregistrer</button>
+            </form>
             </p>
 
             </br>
