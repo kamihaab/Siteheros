@@ -1,6 +1,6 @@
 <?php
 require_once('fonctions/connect.php');
-session_start();
+session_start();//azdazdazd
 ?>
 <!doctype html>
 <html>
