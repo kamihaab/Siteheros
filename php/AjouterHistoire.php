@@ -21,12 +21,11 @@ session_start();
     
     if (isset($_POST["titre"])) {
     //histoire_titre histoire_image histoire_resume histoire_branche_id 
-        $titre = addslashes($_POST['title']);
-        $image = addslashes($_POST['image']);
+        $titre = addslashes($_POST['titre']);
+        //$image = addslashes($_POST['image']);
         $resume = addslashes($_POST['resume']);
-        $id = escape($_POST['id']);
+        $id = addslashes($_POST['id']);
         
-        /* C'est utile ça?
         $tmpFile = $_FILES['image']['tmp_name'];
         if (is_uploaded_file($tmpFile)) {
             // upload movie image
@@ -34,21 +33,21 @@ session_start();
             $uploadedFile = "images/$image";
             move_uploaded_file($_FILES['image']['tmp_name'], $uploadedFile);
         }
-        */
+        
         
         // insert histoire into BD
         $requete = $bdd->prepare("INSERT INTO histoire (`histoire_titre`, `histoire_image`,`histoire_resume`,`histoire_branche_id`) VALUES(?, ?, ?, ?)"); 
         
         $requete->execute(array($titre,$image, $resume,$id));
         //var_dump($requete);
-        header('Location: ../php/index.php');
+        header('Location: index.php');
         exit;
     }
 }
     ?>
     <body>
         <div class="container"> <!--Ajout d'un film-->
-            <form action="inscription.php" name="inscription" method="POST">
+            <form action="AjouterHistoire.php" name="inscription" method="POST">
                 <h1>Ajouter une histoire</h1>
 
                 <label><b>Titre </b></label>

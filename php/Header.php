@@ -7,7 +7,14 @@
     if (isset( $_SESSION['loggedin'])&& $_SESSION['loggedin']==true)
     {
         ?> Bienvenue <?= $_SESSION['login']?>
+        <div class="box">
+            <div>
         <a class="bouton connexion" href="fonctions/deconnexion.php">Se déconnecter</a>
+    </div>
+    <div>
+        <a class="bouton connexion" href="AjouterHistoire.php">Ajouter une histoire</a>
+    </div>
+
         <?php
     }
     else
