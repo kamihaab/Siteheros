@@ -38,8 +38,9 @@ create table histoireEnCours (
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
 
 create table brancheabranche (
-    brancheabranche_brancheprecedente_id integer,
+    brancheabranche_nombouton varchar(20),
+    brancheabranche_brancheactuelle_id integer,
     brancheabranche_branchesuivante_id integer,
-    FOREIGN KEY (brancheabranche_brancheprecedente_id) references branche(branche_id) ON DELETE CASCADE,
+    FOREIGN KEY (brancheabranche_brancheactuelle_id) references branche(branche_id) ON DELETE CASCADE,
     FOREIGN KEY (brancheabranche_branchesuivante_id) references branche(branche_id) ON DELETE CASCADE
 ) engine=innodb character set utf8 collate utf8_unicode_ci;

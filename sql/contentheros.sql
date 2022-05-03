@@ -25,3 +25,11 @@ insert into branche(branche_titre,branche_paragraphe,branche_image,branche_histo
 ("Fait Chaud","Vous êtes parti pour un run et vous vous êtes perdu dans vos pensées","desert",4),
 ("L'eau ca mouille","JE VEUX ALLLLER A LA PAGGE ALED, ARRETER DE DONNER DES PROJETS","mer",5),
 ("ZEEENITSUU L'ECLAIR","Vous rentrez chez vous et soudain vous voyez votre famiile morte par terre","Zenitsu",6);
+
+insert into branche(branche_titre,branche_paragraphe,branche_image,branche_histoire_id) values
+("branche2.a","Vous courrez","escargot",1),
+("branche2.b","vous sautez","escargot",1);
+
+insert into brancheabranche(brancheabranche_nombouton,brancheabranche_brancheactuelle_id,brancheabranche_branchesuivante_id) values
+("versbranche2.a",1,7),
+("versbranche2.b",1,8);
