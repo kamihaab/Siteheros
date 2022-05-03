@@ -16,11 +16,12 @@ session_start();
     <?php include "Header.php" ?>
     <main>
         <?php
-        if (isset($_GET['name'])) {
-        ?>
+        if (isset($_GET['id'])) {
+        ?>  
             <?php
-
-            $sql = 'SELECT * FROM histoire WHERE histoire_titre=\'' . addslashes($_GET["name"]) . '\'';
+            $id=$_GET['id'];
+            
+            $sql = "SELECT * FROM histoire WHERE histoire_id=$id";
             $res = $bdd->query($sql);
             $ligne = $res->fetch();
 

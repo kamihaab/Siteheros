@@ -16,14 +16,16 @@ session_start();
     <?php include "Header.php" ?>
     <main>
         <?php
-        if (isset($_GET['name']) && isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true) {
+        if (isset($_GET['id']) && isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true) {
+            $id=$_GET['id'];
             
             if (isset($_POST['titre']))
             {
                 $titre=$_POST['titre'];
                 $sql="UPDATE histoire
                 SET histoire_titre='$titre'
-                WHERE histoire_titre=".'\'' . $_GET['name'] . '\'';
+                WHERE histoire_id='$id'";
+
                 $bdd-> query($sql);
             }
             if (isset($_FILES['file'])) {
@@ -37,11 +39,10 @@ session_start();
                 SET histoire_image="$name"
                 WHERE histoire_titre=addslashes($_GET["name"]) ';
                 $bdd->query($sql);
-                $_GET['name']=$name;
-                echo $_GET['name'];
+
             }
 
-            $sql = 'SELECT * FROM histoire WHERE histoire_titre=\'' . addslashes($_GET["name"]) . '\'';
+            $sql = "SELECT * FROM histoire WHERE histoire_id='$id'";
             $res = $bdd->query($sql);
             $ligne = $res->fetch();
 
@@ -56,7 +57,7 @@ session_start();
 
         ?>
 
-            <form action="pageHistoireAdmin.php?name=<?=$_GET['name']?> " method="POST">
+            <form action="pageHistoireAdmin.php?id=<?=$id?> " method="POST">
                 <textarea  name="titre"><?=$titre?> </textarea>
         </br>
                 <button type="submit">Enregistrer</button>
@@ -64,14 +65,14 @@ session_start();
 
 
 
-            <a href="fonctions/supprimeHistoire.php?name=<?= $_GET['name'] ?>">
+            <a href="fonctions/supprimeHistoire.php?id=<?= $id?>">
                 <img id="poubelle" class="droite" src=../images/poubelle.jpg alt="symbole Poubelle">
             </a>
 
             </br>
             <img class="imageCentrale" src="<?= $nomImage ?>" alt="image de <?= $nomImage ?>">
 
-            <form action="pageHistoireAdmin.php?name=<?= $_GET["name"] ?>" method="POST" enctype="multipart/form-data">
+            <form action="pageHistoireAdmin.php?id=<?= $id?>" method="POST" enctype="multipart/form-data">
                 <input type="file" name="file">
                 </br>
                 <button type="submit">Enregistrer</button>

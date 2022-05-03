@@ -1,6 +1,7 @@
 <?php
 require_once("connect.php");
-$sql="DELETE FROM histoire WHERE histoire_titre=".'\''.addslashes($_GET['name']).'\'';
+$id=$_GET['id'];
+$sql="DELETE FROM histoire WHERE histoire_id='$id'";
 $bdd->query($sql);
 header('location: ../index.php');
 exit;

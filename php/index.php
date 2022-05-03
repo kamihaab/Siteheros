@@ -27,20 +27,21 @@ session_start();
                 $images = glob("../images/" . $ligne['histoire_image'] . '.{jpg,png}', GLOB_BRACE);
                 $nomImage = $images[0];
                 $titre = $ligne['histoire_titre'];
+                $id=$ligne['histoire_id'];
                 ?>
 
                 <h3>En cours</h3>
                 <?php
                 if (isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true) {
                 ?>
-                    <a href="pageHistoireAdmin.php?name=<?= $titre ?>">
+                    <a href="pageHistoireAdmin.php?id=<?= $id ?>">
                         <img class="imgStory" src="<?= $nomImage ?>" alt="image de <?= $nomImage ?>">
                         <h2><?= $titre ?></h2>
                     </a>
                 <?php
                 } else {
                 ?>
-                    <a href="pageHistoire.php?name=<?= $titre ?>">
+                    <a href="pageHistoire.php?id=<?= $id ?>">
                         <img class="imgStory" src="<?= $nomImage ?>" alt="image de <?= $nomImage ?>">
                         <h2><?= $titre ?></h2>
                     </a>
