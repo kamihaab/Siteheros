@@ -32,13 +32,19 @@ session_start();
             <br><br><br><br><br>
             <p><?=$paragraphe?></p>
             <br><br><br>
-        
-            <a class="bouton choix">Sauter</a>
-            <a class="bouton choix">Courir</a>
-            </main>
+            <?php
+        $sql = "SELECT * FROM brancheabranche WHERE brancheabranche_brancheactuelle_id ='$_GET[id]'"; //ou =branche_id? 
+        $res = $bdd->query($sql);
+        while ($ligne = $res->fetch()) {
+        ?>
+            <a class="bouton choix" href="branche.php?id=<?= $ligne['brancheabranche_branchesuivante_id'] ?>" > <?= $ligne['brancheabranche_nombouton'] ?></a> 
+            
             <?php
         }
+
+        }
         ?>
+    </main>
 
 
 
