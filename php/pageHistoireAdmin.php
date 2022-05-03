@@ -18,10 +18,12 @@ session_start();
         <?php
         if (isset($_GET['id']) && isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true) {
             $id=$_GET['id'];
-            
+
+
+
             if (isset($_POST['titre']))
             {
-                $titre=$_POST['titre'];
+                $titre=addslashes($_POST['titre']);
                 $sql="UPDATE histoire
                 SET histoire_titre='$titre'
                 WHERE histoire_id='$id'";
@@ -30,31 +32,40 @@ session_start();
             }
             if (isset($_POST['resume']))
             {
-                $resume=$_POST['resume'];
+                $resume=addslashes($_POST['resume']);
                 $sql="UPDATE histoire
                 SET histoire_resume='$resume'
                 WHERE histoire_id='$id'";
 
                 $bdd-> query($sql);
             }
-            if (isset($_FILES['file'])) {
+            if (isset($_FILES['file'])&&$_FILES['file']['error']==0) {
+                $sql = "SELECT * FROM histoire WHERE histoire_id='$id'";
+                $res = $bdd->query($sql);
+                $ligne = $res->fetch();
+                $images=glob("../images/" . $ligne['histoire_image'] . '.{jpg,png}', GLOB_BRACE);
+                $fichier=$images[0];
+                if(file_exists($fichier)){  
+                    unlink($fichier);
+                }
+
                 $tmpName = $_FILES['file']['tmp_name'];
                 $fullname = $_FILES['file']['name'];
                 $name = explode('.', $fullname)[0]; //split string when there is a "." so full name is with png jpg etc
 
                 move_uploaded_file($tmpName, '../images/' . $fullname);
 
-                $sql = 'UPDATE histoire
-                SET histoire_image="$name"
-                WHERE histoire_titre=addslashes($_GET["name"]) ';
+                $sql = "UPDATE histoire
+                SET histoire_image='$name'
+                WHERE histoire_id='$id'";
                 $bdd->query($sql);
 
             }
-
+        
             $sql = "SELECT * FROM histoire WHERE histoire_id='$id'";
             $res = $bdd->query($sql);
             $ligne = $res->fetch();
-
+            
             $idbranche = $ligne['histoire_branche_id'];
 
             $images = glob("../images/" . $ligne['histoire_image'] . '.{jpg,png}', GLOB_BRACE);
@@ -67,14 +78,14 @@ session_start();
         ?>
 
             <form action="pageHistoireAdmin.php?id=<?=$id?> " method="POST">
-                <textarea  name="titre"><?=$titre?> </textarea>
+                <textarea  name="titre"><?=$titre?></textarea>
         </br>
                 <button type="submit">Enregistrer</button>
             </form>
 
 
 
-            <a href="fonctions/supprimeHistoire.php?id=<?= $id?>">
+            <a href="fonctions/supprimeHistoire.php?id=<?=$id?>">
                 <img id="poubelle" class="droite" src=../images/poubelle.jpg alt="symbole Poubelle">
             </a>
 
@@ -91,7 +102,7 @@ session_start();
 
             <p class="breakword">
                <form action="pageHistoireAdmin.php?id=<?=$id?> " method="POST">
-                <textarea  name="resume"><?=$resume?> </textarea>
+                <textarea  name="resume"><?=$resume?></textarea>
         </br>
                 <button type="submit">Enregistrer</button>
             </form>
