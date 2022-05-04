@@ -86,7 +86,7 @@ session_start();
 
 
             <a href="fonctions/supprimeHistoire.php?id=<?=$id?>">
-                <img id="poubelle" class="droite" src=../images/poubelle.jpg alt="symbole Poubelle">
+                <img id="poubellehistoire" class="droite" src=../images/poubelle.jpg alt="symbole Poubelle">
             </a>
 
             </br>
@@ -117,12 +117,24 @@ session_start();
             <h4>BRANCHE 1</h4>
             <ul>       
                 <h5>Branche précédente:</h5>
-                <li> branche -1</li>
+                <li> 
+                <div class="container">
+                    <div class="titre">branche-1</div>
+                    <div class="boutonsbranche">
+                    <a>
+                    <img class="poubellebranche" src=../images/poubelle.jpg alt="symbole Poubelle">
+                    </a>
+                    <a>
+                    <img class="poubellebranche" src=../images/poubelle.jpg alt="symbole Poubelle">
+                    </a>
+                </div>
+                </div>
+                </li>
 
                 <h5>Branche suivante:</h5>
                 <li>branche2</li>
                 <li>branche3</li>
-                <a class="bouton boutonbranche" href="login.php">Changer la branche</a>
+                <a class="bouton changerbranche" href="branche.php?id=1">Changer la branche</a>
             </ul>
         </div>
         <div class="branche" tabindex="0">
@@ -132,9 +144,12 @@ session_start();
                 <li> branche -1</li>
 
                 <h5>Branche suivante:</h5>
-                <li>branche2</li>
+                <li>branche2
+                </li>
                 <li>branche3</li>
-                <a class="bouton boutonbranche" href="login.php">Changer la branche</a>
+
+                <a class="bouton changerbranche" href="branche.php?id=222">Changer la branche</a>
+
             </ul>
         </div>
         <?php
