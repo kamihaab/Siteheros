@@ -11,9 +11,6 @@
             <div>
         <a class="bouton connexion" href="fonctions/deconnexion.php">Se déconnecter</a>
     </div>
-    <div>
-        <a class="bouton connexion" href="AjouterHistoire.php">Ajouter une histoire</a>
-    </div>
 
         <?php
     }

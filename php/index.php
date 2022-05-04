@@ -16,6 +16,17 @@ session_start();
 
     <?php include "Header.php" ?>
 
+    <?php
+    if (isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true) {
+    ?>
+
+    <div>
+    <a class="bouton ajout" href="AjouterHistoire.php">Ajouter une histoire</a>
+    </div>
+    <?php
+        }
+    ?>
+
     <main class="StoryContainer">
         <?php
         $sql = "SELECT * FROM histoire    ";
@@ -34,6 +45,7 @@ session_start();
                 <?php
                 if (isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true) {
                 ?>
+                
                     <a href="pageHistoireAdmin.php?id=<?= $id ?>">
                         <img class="imgStory" src="<?= $nomImage ?>" alt="image de <?= $nomImage ?>">
                         <h2><?= $titre ?></h2>
