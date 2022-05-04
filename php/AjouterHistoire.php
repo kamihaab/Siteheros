@@ -24,30 +24,29 @@ session_start();
         $titre = addslashes($_POST['titre']);
         //$image = addslashes($_POST['image']);
         $resume = addslashes($_POST['resume']);
-        $id = addslashes($_POST['id']);
+        //$id = addslashes($_POST['id']);
         
         $tmpFile = $_FILES['image']['tmp_name'];
-        if (is_uploaded_file($tmpFile)) {
             // upload movie image
-            $image = basename($_FILES['image']['name']);
-            $uploadedFile = "images/$image";
-            move_uploaded_file($_FILES['image']['tmp_name'], $uploadedFile);
-        }
+            $fullname = $_FILES['image']['name'];
+                $name = explode('.', $fullname)[0];
+            $uploadedFile = "../images/$fullname";
+            move_uploaded_file($tmpFile, $uploadedFile);
         
         
         // insert histoire into BD
-        $requete = $bdd->prepare("INSERT INTO histoire (`histoire_titre`, `histoire_image`,`histoire_resume`,`histoire_branche_id`) VALUES(?, ?, ?, ?)"); 
+        $requete = $bdd->prepare("INSERT INTO histoire (`histoire_titre`, `histoire_image`,`histoire_resume`) VALUES(?, ?, ?)"); 
         
-        $requete->execute(array($titre,$image, $resume,$id));
+        $requete->execute(array($titre,$name, $resume));
         //var_dump($requete);
-        header('Location: index.php');
-        exit;
+        //header('Location: index.php');
+        //exit;
     }
 }
     ?>
     <body>
         <div class="container"> <!--Ajout d'un film-->
-            <form action="AjouterHistoire.php" name="inscription" method="POST">
+            <form action="AjouterHistoire.php" name="inscription" enctype="multipart/form-data" method="POST">
                 <h1>Ajouter une histoire</h1>
 
                 <label><b>Titre </b></label>
@@ -58,9 +57,6 @@ session_start();
 
                 <label><b>Résumé</b></label>
                 <input type="text" placeholder="Resume" name="resume" required>
-
-                <label><b>Numéro de l'histoire</b></label>
-                <input type="number" placeholder="id" name="id" required>
 
                 <input type="submit" id='submit' class="submit" value='Ajouter' >
             </form>
