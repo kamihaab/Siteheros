@@ -13,7 +13,7 @@ body{
     border-radius: 2.5vw;
     padding:0.5vw;
     text-decoration: none;
-    z-index: 99;
+    z-index: 2;
     display:inline;
 }
 .rajoutebranche{
@@ -240,5 +240,43 @@ li{
 }
 
 }
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+.dropdown:focus .dropdowncontent,.dropdown:focus-within .dropdowncontent{
+    display:block;
+}
+.dropdowncontent{
+    background-color:#9F4636;
+    display: none;
+  position: absolute;
+  border: 1px solid black;
+  z-index: 4;
+  font-size: 2rem;
+}
+.dropdowncontent a{
+    color:#F1DCC9;
+    border: 1px solid black;
+    text-decoration: none;
+    padding:0.3em;
+}
+
+.show{
+    display:block;
+}
+.pointer{
+    cursor:pointer;
+}
+.dropdowncontent a {
+    display: block;
+  }
+
+.imageloupe{
+    background-color:white;
+    display:inline;
+    height:2rem;
+}
+
 
 
