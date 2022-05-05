@@ -28,8 +28,10 @@ insert into branche(branche_titre,branche_paragraphe,branche_image,branche_histo
 
 insert into branche(branche_titre,branche_paragraphe,branche_image,branche_histoire_id) values
 ("branche2.a","Vous courrez","escargot",1),
-("branche2.b","vous sautez","escargot",1);
+("branche2.b","vous sautez","escargot",1),
+("branche2.c","vous crier ayayyaayyaayayayayya!!!","escargot",1);
 
 insert into brancheabranche(brancheabranche_nombouton,brancheabranche_brancheactuelle_id,brancheabranche_branchesuivante_id) values
 ("versbranche2.a",1,7),
-("versbranche2.b",1,8);
+("versbranche2.b",1,8),
+("versbranche2.b",9,7);

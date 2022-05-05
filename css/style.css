@@ -146,10 +146,11 @@ p{
 
     
 }
-h4{
+.bandeauBranche{
     border-radius: 1rem;
     background-color: #9f4636a9;
     padding:1%;
+
 }
 .branche ul{
     margin:1%;
@@ -177,13 +178,12 @@ li{
 {
     display:inline-flex;
     justify-content: end;
-    background-color: blue;
     gap:1em;
 }
-.titre{
+.titrebranche{
     display:inline-block;
 }
-.branche:focus ul,.branche:active ul {
+.branche:focus ul,.branche:active ul,.branche:focus-within ul  {
     display:block;
     padding:1%;
 }
@@ -194,7 +194,7 @@ li{
     display: flex;
     justify-content: space-between;
 }
-.poubellebranche
+.boutonbranche
 {   
     display: inline-block;
     vertical-align: middle;

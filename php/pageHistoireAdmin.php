@@ -17,35 +17,33 @@ session_start();
     <main>
         <?php
         if (isset($_GET['id']) && isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true) {
-            $id=$_GET['id'];
+            $id = $_GET['id'];
 
 
 
-            if (isset($_POST['titre']))
-            {
-                $titre=addslashes($_POST['titre']);
-                $sql="UPDATE histoire
+            if (isset($_POST['titre'])) {
+                $titre = addslashes($_POST['titre']);
+                $sql = "UPDATE histoire
                 SET histoire_titre='$titre'
                 WHERE histoire_id='$id'";
 
-                $bdd-> query($sql);
+                $bdd->query($sql);
             }
-            if (isset($_POST['resume']))
-            {
-                $resume=addslashes($_POST['resume']);
-                $sql="UPDATE histoire
+            if (isset($_POST['resume'])) {
+                $resume = addslashes($_POST['resume']);
+                $sql = "UPDATE histoire
                 SET histoire_resume='$resume'
                 WHERE histoire_id='$id'";
 
-                $bdd-> query($sql);
+                $bdd->query($sql);
             }
-            if (isset($_FILES['file'])&&$_FILES['file']['error']==0) {
+            if (isset($_FILES['file']) && $_FILES['file']['error'] == 0) {
                 $sql = "SELECT * FROM histoire WHERE histoire_id='$id'";
                 $res = $bdd->query($sql);
                 $ligne = $res->fetch();
-                $images=glob("../images/" . $ligne['histoire_image'] . '.{jpg,png}', GLOB_BRACE);
-                $fichier=$images[0];
-                if(file_exists($fichier)){  
+                $images = glob("../images/" . $ligne['histoire_image'] . '.{jpg,png}', GLOB_BRACE);
+                $fichier = $images[0];
+                if (file_exists($fichier)) {
                     unlink($fichier);
                 }
 
@@ -59,9 +57,8 @@ session_start();
                 SET histoire_image='$name'
                 WHERE histoire_id='$id'";
                 $bdd->query($sql);
-
             }
-        
+
             $sql = "SELECT * FROM histoire WHERE histoire_id='$id'";
             $res = $bdd->query($sql);
             $ligne = $res->fetch();
@@ -77,22 +74,22 @@ session_start();
 
         ?>
 
-            <form action="pageHistoireAdmin.php?id=<?=$id?> " method="POST">
-                <textarea  name="titre"><?=$titre?></textarea>
-        </br>
+            <form action="pageHistoireAdmin.php?id=<?= $id ?> " method="POST">
+                <textarea name="titre"><?= $titre ?></textarea>
+                </br>
                 <button type="submit">Enregistrer</button>
             </form>
 
 
 
-            <a href="fonctions/supprimeHistoire.php?id=<?=$id?>">
+            <a href="fonctions/supprimeHistoire.php?id=<?= $id ?>">
                 <img id="poubellehistoire" class="droite" src=../images/poubelle.jpg alt="symbole Poubelle">
             </a>
 
             </br>
             <img class="imageCentrale" src="<?= $nomImage ?>" alt="image de <?= $nomImage ?>">
 
-            <form action="pageHistoireAdmin.php?id=<?= $id?>" method="POST" enctype="multipart/form-data">
+            <form action="pageHistoireAdmin.php?id=<?= $id ?>" method="POST" enctype="multipart/form-data">
                 <input type="file" name="file">
                 </br>
                 <button type="submit">Enregistrer</button>
@@ -101,57 +98,97 @@ session_start();
 
 
             <p class="breakword">
-               <form action="pageHistoireAdmin.php?id=<?=$id?> " method="POST">
-                <textarea  name="resume"><?=$resume?></textarea>
-        </br>
+            <form action="pageHistoireAdmin.php?id=<?= $id ?> " method="POST">
+                <textarea name="resume"><?= $resume ?></textarea>
+                </br>
                 <button type="submit">Enregistrer</button>
             </form>
             </p>
 
             </br>
             <a class="bouton commencerHistoire" href="branche.php?id=<?= $idbranche ?>"> Commencer une nouvelle histoire</a>
-            
-        </br>
-        </br>
-        <div class="branche" tabindex="0">
-            <h4>BRANCHE 1</h4>
-            <ul>       
-                <h5>Branche précédente:</h5>
-                <li> 
-                <div class="container">
-                    <div class="titre">branche-1</div>
-                    <div class="boutonsbranche">
-                    <a>
-                    <img class="poubellebranche" src=../images/poubelle.jpg alt="symbole Poubelle">
-                    </a>
-                    <a>
-                    <img class="poubellebranche" src=../images/poubelle.jpg alt="symbole Poubelle">
-                    </a>
-                </div>
-                </div>
-                </li>
 
-                <h5>Branche suivante:</h5>
-                <li>branche2</li>
-                <li>branche3</li>
-                <a class="bouton changerbranche" href="branche.php?id=1">Changer la branche</a>
-            </ul>
-        </div>
-        <div class="branche" tabindex="0">
-            <h4>BRANCHE 222</h4>
-            <ul>       
-                <h5>Branche précédente:</h5>
-                <li> branche -1</li>
+            </br>
+            </br>
 
-                <h5>Branche suivante:</h5>
-                <li>branche2
-                </li>
-                <li>branche3</li>
+            <?php
+            $sql = "SELECT * FROM branche WHERE branche_histoire_id='$id'";
+            $res1 = $bdd->query($sql);
+            while ($branchebandeau = $res1->fetch()) {
+                $titrebandeau = $branchebandeau['branche_titre'];
+                $idbranchebandeau = $branchebandeau['branche_id'];
+            ?>
+                <div id="<?=$idbranchebandeau?>" class="branche" tabindex="0">
+                    <div class="container bandeauBranche">
+                        <h4><?= $titrebandeau ?></h4>
+                        <a href="fonctions/supprimeBranche.php?idbranche=<?=$idbranchebandeau?>&idhistoire=<?=$id?>">
+                            <img class="boutonbranche droite" src=../images/poubelle.jpg alt="symbole Poubelle">
+                        </a>
+                    </div>
+                    <ul>
+                        <h5>Branche précédente:</h5>
+                        <?php
+                        $sql = "SELECT branche_titre,branche_id
+                        FROM branche B, brancheabranche BB
+                          WHERE B.branche_id=BB.brancheabranche_brancheactuelle_id
+                           AND BB.brancheabranche_branchesuivante_id='$idbranchebandeau'";
+                        $res2 = $bdd->query($sql);
+                        while ($brancheprecedente = $res2->fetch()) {
+                            $titrebrancheprecendente = $brancheprecedente['branche_titre'];
+                            $branche_idprecedente=$brancheprecedente['branche_id'];
+                        ?>
+                            <li>
+                                <div class="container">
+                                    <div class="titrebranche"><a href="#<?=$branche_idprecedente?>"><?=$titrebrancheprecendente?></a></div>
+                                    <div class="boutonsbranche">
+                                        <a href="fonctions/unlink.php?idhistoire=<?=$id?>&idbrancheprecedente=<?=$branche_idprecedente?>&idbrancheactuelle=<?=$idbranchebandeau?>">
+                                            <img class="boutonbranche" src=../images/unlink.png alt="bouton permettant de détruire le lien entre les branches">
+                                        </a>
+                                        <a href="fonctions/supprimeBranche.php?idbranche=<?=$branche_idprecedente?>&idhistoire=<?=$id?>">
+                                            <img class="boutonbranche" src=../images/poubelle.jpg alt="symbole Poubelle">
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php
+                        }
+                        ?>
+                        <h5>Branche suivante:</h5>
+                        <?php
+                        $sql = "SELECT branche_titre,branche_id
+                        FROM branche B, brancheabranche BB
+                          WHERE B.branche_id=BB.brancheabranche_branchesuivante_id
+                           AND BB.brancheabranche_brancheactuelle_id='$idbranchebandeau'";
+                        $res2 = $bdd->query($sql);
+                        while ($branchesuivante = $res2->fetch()) {
+                            $titrebranchesuivante = $branchesuivante['branche_titre'];
+                            $branche_idsuivante=$branchesuivante['branche_id'];
+                        ?>
+                            <li>
+                                <div class="container">
+                                    <div class="titrebranche"><a href="#<?=$branche_idsuivante?>"><?=$titrebranchesuivante?></a></div>
+                                    <div class="boutonsbranche">
+                                    <a href="fonctions/unlink.php?idhistoire=<?=$id?>&idbrancheprecedente=<?=$idbranchebandeau?>&idbrancheactuelle=<?=$branche_idsuivante?>">
+                                            <img class="boutonbranche" src=../images/unlink.png alt="bouton permettant de détruire le lien entre les branches">
+                                        </a>
+                                        <a href="fonctions/supprimeBranche.php?idbranche=<?=$branche_idsuivante?>&idhistoire=<?=$id?>">
+                                            <img class="boutonbranche" src=../images/poubelle.jpg alt="symbole Poubelle">
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php
+                        }
+                        ?>
 
-                <a class="bouton changerbranche" href="branche.php?id=222">Changer la branche</a>
 
-            </ul>
-        </div>
+                        <a class="bouton changerbranche" href="branche.php?id=1">Changer la branche</a>
+                    </ul>
+            </div>
+            <?php
+            }
+            ?>
+
         <?php
         }
         ?>
