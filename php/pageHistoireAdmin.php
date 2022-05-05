@@ -143,7 +143,7 @@ session_start();
                                 $titrebranche=$ligne['branche_titre'];
                                 $idbranchelien=$ligne['branche_id'];
                                 ?>
-                                <a href="fonctions/rajouteBranche.php?idhistoire=<?= $id ?>&idbranchesuivante=<?=$idbranchebandeau?>"><?=$titrebranche?></a>
+                                <a href="fonctions/relier.php?idhistoire=<?=$id?>&idbrancheactuelle=<?=$idbranchelien?>&idbranchesuivante=<?=$idbranchebandeau?>"><?=$titrebranche?></a>
                            
                             <?php
                             }
@@ -185,11 +185,26 @@ session_start();
 
                             <?php $dropdownid="dropdownsuivant".$idbranchebandeau?>
 
-                            <div id="content<?=$dropdownid?>" class="dropdowncontent"> 
+                            <div id="content<?=$dropdownid?>" class="dropdowncontent">
+                            <div class="container">
+                            <img class="imageloupe" src="../images/Searchicon.png">
                             <input type="text" placeholder="Search.." id="input<?=$dropdownid?>" onkeyup="filterFunction('<?=$dropdownid?>')">
-                            <a href="fonctions/rajouteBranche.php?idhistoire=<?= $id ?>&idbranchesuivante=<?=$idbranchebandeau?>">lien 1</a>
-                            <a href="fonctions/rajouteBranche.php?idhistoire=<?= $id ?>&idbranchesuivante=<?=$idbranchebandeau?>">lien 2</a>
                             </div>
+                            <?php
+                            $sql = "SELECT branche_id,branche_titre FROM branche WHERE branche_histoire_id='$id'AND branche_id<>'$idbranchebandeau' AND
+                            branche_id NOT IN 
+                            (SELECT brancheabranche_branchesuivante_id FROM brancheabranche WHERE brancheabranche_brancheactuelle_id='$idbranchebandeau')";
+                            $reqbranche2 = $bdd->query($sql);
+                            while ($ligne = $reqbranche2->fetch()) {
+                                $titrebranche=$ligne['branche_titre'];
+                                $idbranchelien=$ligne['branche_id'];
+                                ?>
+                                <a href="fonctions/relier.php?idhistoire=<?=$id?>&idbranchesuivante=<?=$idbranchelien?>&idbrancheactuelle=<?=$idbranchebandeau?>"><?=$titrebranche?></a>
+                           
+                            <?php
+                            }
+                            ?>
+                             </div>
                             </div>
                         </h5>
                         <?php

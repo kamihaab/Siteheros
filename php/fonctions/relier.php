@@ -8,6 +8,7 @@ require_once("connect.php");
 
 if (isset($_GET['idbrancheactuelle'])&&isset($_GET['idbranchesuivante']))
 {
+
     $idbranchesuivante=$_GET['idbranchesuivante'];
     $idbrancheactuelle=$_GET['idbrancheactuelle'];
 
