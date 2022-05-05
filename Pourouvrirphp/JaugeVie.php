@@ -107,7 +107,7 @@ session_start();
             <p><?=$paragraphe?></p>
             <br><br><br>
             <p>
-            <img src="../image/vie.png" alt="image coeur">
+            <img class="pv" src="../image/vie.png" alt="image coeur">
             <?=$vie?></p>
             <br><br><br>
             <
