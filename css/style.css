@@ -217,6 +217,10 @@ li{
     height:1.5em;
     object-fit: contain;
 }
+.pv{
+    max-width: 10%;
+	height: auto
+}
 
   @media screen and (max-width:1024px){
     .Story{
