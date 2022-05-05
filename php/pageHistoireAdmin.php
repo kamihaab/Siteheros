@@ -110,7 +110,7 @@ session_start();
 
             </br>
             </br>
-
+            <a class="bouton gauche" href="fonctions/rajouteBranche.php?idhistoire=<?= $id ?>">Rajouter Branche</a>
             <?php
             $sql = "SELECT * FROM branche WHERE branche_histoire_id='$id'";
             $res1 = $bdd->query($sql);
@@ -118,15 +118,19 @@ session_start();
                 $titrebandeau = $branchebandeau['branche_titre'];
                 $idbranchebandeau = $branchebandeau['branche_id'];
             ?>
-                <div id="<?=$idbranchebandeau?>" class="branche" tabindex="0">
+                <div id="<?= $idbranchebandeau ?>" class="branche" tabindex="0">
                     <div class="container bandeauBranche">
                         <h4><?= $titrebandeau ?></h4>
-                        <a href="fonctions/supprimeBranche.php?idbranche=<?=$idbranchebandeau?>&idhistoire=<?=$id?>">
+                        <a href="fonctions/supprimeBranche.php?idbranche=<?= $idbranchebandeau ?>&idhistoire=<?= $id ?>">
                             <img class="boutonbranche droite" src=../images/poubelle.jpg alt="symbole Poubelle">
                         </a>
                     </div>
                     <ul>
-                        <h5>Branche précédente:</h5>
+                        <h5>Branche précédente: 
+                            <a class="bouton rajoutebranche" href="fonctions/rajouteBranche.php?idhistoire=<?= $id ?>&idbranchesuivante=<?=$idbranchebandeau?>">Rajouter Branche</a>
+                            <a class="bouton rajoutebranche" href="fonctions/rajouteBranche.php?idhistoire=<?= $id ?>&idbranchesuivante=<?=$idbranchebandeau?>">Relier</a>
+            </h5>
+
                         <?php
                         $sql = "SELECT branche_titre,branche_id
                         FROM branche B, brancheabranche BB
@@ -135,16 +139,16 @@ session_start();
                         $res2 = $bdd->query($sql);
                         while ($brancheprecedente = $res2->fetch()) {
                             $titrebrancheprecendente = $brancheprecedente['branche_titre'];
-                            $branche_idprecedente=$brancheprecedente['branche_id'];
+                            $branche_idprecedente = $brancheprecedente['branche_id'];
                         ?>
                             <li>
                                 <div class="container">
-                                    <div class="titrebranche"><a href="#<?=$branche_idprecedente?>"><?=$titrebrancheprecendente?></a></div>
+                                    <div class="titrebranche"><a href="#<?= $branche_idprecedente ?>"><?= $titrebrancheprecendente ?></a></div>
                                     <div class="boutonsbranche">
-                                        <a href="fonctions/unlink.php?idhistoire=<?=$id?>&idbrancheprecedente=<?=$branche_idprecedente?>&idbrancheactuelle=<?=$idbranchebandeau?>">
+                                        <a href="fonctions/unlink.php?idhistoire=<?= $id ?>&idbrancheprecedente=<?= $branche_idprecedente ?>&idbrancheactuelle=<?= $idbranchebandeau ?>">
                                             <img class="boutonbranche" src=../images/unlink.png alt="bouton permettant de détruire le lien entre les branches">
                                         </a>
-                                        <a href="fonctions/supprimeBranche.php?idbranche=<?=$branche_idprecedente?>&idhistoire=<?=$id?>">
+                                        <a href="fonctions/supprimeBranche.php?idbranche=<?= $branche_idprecedente ?>&idhistoire=<?= $id ?>">
                                             <img class="boutonbranche" src=../images/poubelle.jpg alt="symbole Poubelle">
                                         </a>
                                     </div>
@@ -153,7 +157,10 @@ session_start();
                         <?php
                         }
                         ?>
-                        <h5>Branche suivante:</h5>
+                        <h5>Branche suivante:
+                            <a class="bouton rajoutebranche" href="fonctions/rajouteBranche.php?idhistoire=<?= $id ?>&idbrancheprecedente=<?=$idbranchebandeau?>">Rajouter Branche</a>
+                            <a class="bouton rajoutebranche" href="fonctions/rajouteBranche.php?idhistoire=<?= $id ?>&idbranchesuivante=<?=$idbranchebandeau?>">Relier</a>
+                        </h5>
                         <?php
                         $sql = "SELECT branche_titre,branche_id
                         FROM branche B, brancheabranche BB
@@ -162,16 +169,16 @@ session_start();
                         $res2 = $bdd->query($sql);
                         while ($branchesuivante = $res2->fetch()) {
                             $titrebranchesuivante = $branchesuivante['branche_titre'];
-                            $branche_idsuivante=$branchesuivante['branche_id'];
+                            $branche_idsuivante = $branchesuivante['branche_id'];
                         ?>
                             <li>
                                 <div class="container">
-                                    <div class="titrebranche"><a href="#<?=$branche_idsuivante?>"><?=$titrebranchesuivante?></a></div>
+                                    <div class="titrebranche"><a href="#<?= $branche_idsuivante ?>"><?= $titrebranchesuivante ?></a></div>
                                     <div class="boutonsbranche">
-                                    <a href="fonctions/unlink.php?idhistoire=<?=$id?>&idbrancheprecedente=<?=$idbranchebandeau?>&idbrancheactuelle=<?=$branche_idsuivante?>">
+                                        <a href="fonctions/unlink.php?idhistoire=<?= $id ?>&idbrancheprecedente=<?= $idbranchebandeau ?>&idbrancheactuelle=<?= $branche_idsuivante ?>">
                                             <img class="boutonbranche" src=../images/unlink.png alt="bouton permettant de détruire le lien entre les branches">
                                         </a>
-                                        <a href="fonctions/supprimeBranche.php?idbranche=<?=$branche_idsuivante?>&idhistoire=<?=$id?>">
+                                        <a href="fonctions/supprimeBranche.php?idbranche=<?= $branche_idsuivante ?>&idhistoire=<?= $id ?>">
                                             <img class="boutonbranche" src=../images/poubelle.jpg alt="symbole Poubelle">
                                         </a>
                                     </div>
@@ -184,7 +191,7 @@ session_start();
 
                         <a class="bouton changerbranche" href="branche.php?id=1">Changer la branche</a>
                     </ul>
-            </div>
+                </div>
             <?php
             }
             ?>

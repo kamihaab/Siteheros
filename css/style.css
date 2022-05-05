@@ -16,6 +16,11 @@ body{
     z-index: 99;
     display:inline;
 }
+.rajoutebranche{
+    font-size:2rem;
+    display: inline-block;
+    margin:0.5em;
+}
 .FondBranche
 {
     z-index: -1;
@@ -36,6 +41,9 @@ body{
 #poubellehistoire{
     width:8vw;
     height:8vw;
+}
+.static{
+    position:static;
 }
 
 .choix{
@@ -93,8 +101,11 @@ textarea{
     resize: vertical;
 }
 input,button{
-    font-size: 3rem;
+    font-size: 1rem;
+
 }
+
+
 h3
 {
     font-size: 3em;
@@ -173,7 +184,12 @@ li{
     margin:2%;
 
 }
-
+.gauche{    
+    display:inline-block;  
+    position:relative;
+    right:50%;
+    transform: translateX(50%);
+}
 .boutonsbranche
 {
     display:inline-flex;
