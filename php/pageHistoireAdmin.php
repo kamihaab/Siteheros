@@ -141,7 +141,7 @@ session_start();
                                 <div class="container">
                                     <div class="titrebranche"><a href="#<?=$branche_idprecedente?>"><?=$titrebrancheprecendente?></a></div>
                                     <div class="boutonsbranche">
-                                        <a>
+                                        <a href="fonctions/unlink.php?idhistoire=<?=$id?>&idbrancheprecedente=<?=$branche_idprecedente?>&idbrancheactuelle=<?=$idbranchebandeau?>">
                                             <img class="boutonbranche" src=../images/unlink.png alt="bouton permettant de détruire le lien entre les branches">
                                         </a>
                                         <a href="fonctions/supprimeBranche.php?idbranche=<?=$branche_idprecedente?>&idhistoire=<?=$id?>">
@@ -168,7 +168,7 @@ session_start();
                                 <div class="container">
                                     <div class="titrebranche"><a href="#<?=$branche_idsuivante?>"><?=$titrebranchesuivante?></a></div>
                                     <div class="boutonsbranche">
-                                        <a>
+                                    <a href="fonctions/unlink.php?idhistoire=<?=$id?>&idbrancheprecedente=<?=$idbranchebandeau?>&idbrancheactuelle=<?=$branche_idsuivante?>">
                                             <img class="boutonbranche" src=../images/unlink.png alt="bouton permettant de détruire le lien entre les branches">
                                         </a>
                                         <a href="fonctions/supprimeBranche.php?idbranche=<?=$branche_idsuivante?>&idhistoire=<?=$id?>">
