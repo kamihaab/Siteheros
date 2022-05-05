@@ -240,5 +240,29 @@ li{
 }
 
 }
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+.dropdown:focus .dropdowncontent,.dropdown:focus-within .dropdowncontent{
+    display:block;
+}
+.dropdowncontent{
+
+    display: none;
+  position: absolute;
+  min-width: 230px;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+.show{
+    display:block;
+}
+.pointer{
+    cursor:pointer;
+}
+.dropdowncontent a {
+    display: block;
+  }
 
 
