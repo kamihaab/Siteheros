@@ -91,10 +91,14 @@ session_start();
             $titre = $ligne['branche_titre'];
             $paragraphe=$ligne['branche_paragraphe'];
             $vieinitiale =10;
-            $vie=$vieinitiale;
+            $vie;
+            //Comment je fais pour savoir la vie qu'il a actuellement 
             //$vieperdue="SELECT branche_vie FROM brancheabranche WHERE brancheabranche_brancheactuelle_id ='$_GET[id]'";
-            if ($ligne['branche_id']!=1){
-                $vie=$vieinitiale - $ligne['branche_vie']
+            if ($ligne['branche_id']!=2){
+                $vie=$vieinitiale - $ligne['branche_vie'];
+            }
+            if ($ligne['branche_id']==2){
+                $vie=$vieinitiale - $ligne['branche_vie'];
             }
             ?>
             <img class="FondBranche" src="<?= $nomImage ?>" alt="image de <?= $nomImage ?>">
