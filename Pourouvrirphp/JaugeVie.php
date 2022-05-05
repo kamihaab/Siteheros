@@ -127,7 +127,6 @@ session_start();
             <img class="pv" src="../image/vie.png" alt="image coeur">
             <?=$vie?></p>
             <br><br><br>
-            <
             <?php 
         $sql = "SELECT * FROM brancheabranche WHERE brancheabranche_brancheactuelle_id ='$_GET[id]'"; //ou =branche_id? 
         $res = $bdd->query($sql);
