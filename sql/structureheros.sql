@@ -17,7 +17,8 @@ create table histoire(
     histoire_titre varchar(50) not null,
     histoire_image varchar(150),
     histoire_resume varchar (500),
-    histoire_branche_id integer
+    histoire_branche_id integer,
+    histoire_vie integer
 
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
 
@@ -34,6 +35,7 @@ create table branche(
 create table histoireEnCours (
     histoireEnCours_usr_id integer,
     histoireEnCours_branche_id integer,
+    histoireEnCours_vie integer,
     FOREIGN KEY (histoireEnCours_usr_id) references user(usr_id) ON DELETE CASCADE,
     FOREIGN KEY (histoireEnCours_branche_id) references branche(branche_id)ON DELETE CASCADE
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
