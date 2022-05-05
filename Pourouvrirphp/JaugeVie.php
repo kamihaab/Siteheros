@@ -90,10 +90,11 @@ session_start();
             $nomImage = $images[0];
             $titre = $ligne['branche_titre'];
             $paragraphe=$ligne['branche_paragraphe'];
-            $vie=$ligne['branche_vie'];
+            $vieinitiale =10;
+            $vie=$vieinitiale;
+            //$vieperdue="SELECT branche_vie FROM brancheabranche WHERE brancheabranche_brancheactuelle_id ='$_GET[id]'";
             if ($ligne['branche_id']!=1){
-                
-
+                $vie=$vieinitiale - $ligne['branche_vie']
             }
             ?>
             <img class="FondBranche" src="<?= $nomImage ?>" alt="image de <?= $nomImage ?>">
