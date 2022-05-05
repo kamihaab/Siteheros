@@ -27,6 +27,7 @@ create table branche(
     branche_paragraphe varchar(500),
     branche_image varchar(150),
     branche_histoire_id integer,
+    branche_vie integer,
     FOREIGN KEY (branche_histoire_id) references histoire(histoire_id) ON DELETE CASCADE
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
 
