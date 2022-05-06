@@ -54,7 +54,7 @@ session_start();
                 <input type="text" placeholder="titre" name="titre" required>
 
                 <label><b> Image</b></label>
-                <input type="file" placeholder="image" name="image" required>
+                <input type="file" placeholder="image" name="image">
 
                 <label><b>Résumé</b></label>
                 <input type="text" placeholder="Resume" name="resume" required>
@@ -62,6 +62,8 @@ session_start();
                 <input type="submit" id='submit' class="submit" value='Ajouter' >
             </form>
         </div>
+        <?php header('location: index.php');
+        exit; ?>
 </main>
 
 <?php }
