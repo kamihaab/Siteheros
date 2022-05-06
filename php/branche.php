@@ -13,18 +13,18 @@ session_start();
 </head>
 
 <body>
-<?php include "Header.php"?>
+    <?php include "Header.php" ?>
     <main>
-        <?php if (isset($_GET['id']))
-        {
-            $sql="SELECT * FROM branche WHERE branche_id='$_GET[id]'";
-            $res=$bdd->query($sql);
-            $ligne=$res->fetch();
+        <?php if (isset($_GET['id'])) {
+            $idbranche = $_GET['id'];
+            $sql = "SELECT * FROM branche WHERE branche_id='$idbranche'";
+            $res = $bdd->query($sql);
+            $ligne = $res->fetch();
 
-            $images=glob("../images/".$ligne['branche_image'].'.{jpg,png}',GLOB_BRACE);
+            $images = glob("../images/" . $ligne['branche_image'] . '.{jpg,png}', GLOB_BRACE);
             $nomImage = $images[0];
             $titre = $ligne['branche_titre'];
-            $paragraphe=$ligne['branche_paragraphe'];
+            $paragraphe = $ligne['branche_paragraphe'];
 
             ////////////////////////////////////////////////
             /*
@@ -47,25 +47,25 @@ session_start();
 
             }
             else{
-                
-                $requeteVie="SELECT histoireEnCours_vie FROM histoireEnCours WHERE histoireEnCours_branche_id ='$_GET[id]'";
-                $res=$bdd->query($requeteVie);
-                $ligne=$res->fetch();
                 */
-                $vie=$_GET['vieinitiale']- $ligne['branche_vie'];
-                //On va maintenant enregistrer la variable vie dans la table histoire en cours associée au user_id
+            $requeteVie = "SELECT histoireEnCours_vie FROM histoireEnCours WHERE histoireEnCours_branche_id ='$idbranche'";
+            $resVie = $bdd->query($requeteVie);
+            $ligneVie = $resVie->fetch();
+            print_r($ligneVie);
+            $vie = $ligneVie['histoireEnCours_vie'] - $ligne['branche_vie'];
+            //On va maintenant enregistrer la variable vie dans la table histoire en cours associée au user_id
             //$requeteUser="SELECT * FROM branche WHERE branche_id='$_GET[id]'";
             //$_SESSION['login']
-                $sql = "UPDATE histoireEnCours
+            $sql = "UPDATE histoireEnCours
                 SET histoireEnCours_vie='$vie'
                 WHERE histoireEnCours_branche_id ='$_GET[id]'";
-                $bdd->query($sql);
-            
+            //$bdd->query($sql);
 
 
 
-            }
-            /*Ancienne technique
+
+        }
+        /*Ancienne technique
             if ($ligne['branche_id']!=='2'){
                 $vie=$ligne['histoireEnCours_vie'] - $ligne['branche_vie'];
                 //vieencours dans histoire en cours 
@@ -76,31 +76,32 @@ session_start();
                 $vie=$vieinitiale - $ligne['branche_vie'];
             }
             */
-          //////////////////////////////////////////////////////////////////////////////////////
-            ?>
+        //////////////////////////////////////////////////////////////////////////////////////
+        ?>
 
-            <img class="FondBranche" src="<?= $nomImage ?>" alt="image de <?= $nomImage ?>">
-            <h2><?=$titre?></h2>
-            <br><br><br><br><br>
-            <p><?=$paragraphe?></p>
-            <br><br><br>
-            <!-- On ajoute la vie -->
-            <p>
+        <img class="FondBranche" src="<?= $nomImage ?>" alt="image de <?= $nomImage ?>">
+        <h2><?= $titre ?></h2>
+        <br><br><br><br><br>
+        <p><?= $paragraphe ?></p>
+        <br><br><br>
+        <!-- On ajoute la vie -->
+        <p>
             <img class="pv" src="../images/vie.png" alt="image coeur">
-            <?=$vie?></p>
-            <br><br><br>
-            <!---->
-            <?php
+            <?= $vie ?>
+        </p>
+        <br><br><br>
+        <!---->
+        <?php
         $sql = "SELECT * FROM brancheabranche WHERE brancheabranche_brancheactuelle_id ='$_GET[id]'"; //ou =branche_id? 
         $res = $bdd->query($sql);
         while ($ligne = $res->fetch()) {
         ?>
-            <a class="bouton choix" href="branche.php?id=<?= $ligne['brancheabranche_branchesuivante_id'] ?>" > <?= $ligne['brancheabranche_nombouton'] ?></a> 
-            
-            <?php
+            <a class="bouton choix" href="branche.php?id=<?= $ligne['brancheabranche_branchesuivante_id'] ?>"> <?= $ligne['brancheabranche_nombouton'] ?></a>
+
+        <?php
         }
-        
-        }
+
+
         ?>
     </main>
 
