@@ -106,7 +106,7 @@ session_start();
             </p>
 
             </br>
-            <a class="bouton commencerHistoire" href="branche.php?id=<?= $idbranche ?>"> Commencer une nouvelle histoire</a>
+            <a class="bouton commencerHistoire" href="fonctions/initialisationHistoire.php?idbranche=<?= $idbranche ?>&idhistoire=<?= $id?>"> Commencer une nouvelle histoire</a>
 
             </br>
             </br>

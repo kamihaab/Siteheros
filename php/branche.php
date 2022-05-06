@@ -25,6 +25,7 @@ session_start();
             $nomImage = $images[0];
             $titre = $ligne['branche_titre'];
             $paragraphe = $ligne['branche_paragraphe'];
+            $idhistoire=$ligne['branche_histoire_id'];
 
             ////////////////////////////////////////////////
             /*
@@ -58,8 +59,8 @@ session_start();
             //$_SESSION['login']
             $sql = "UPDATE histoireEnCours
                 SET histoireEnCours_vie='$vie'
-                WHERE histoireEnCours_branche_id ='$_GET[id]'";
-            //$bdd->query($sql);
+                WHERE histoireEnCours_branche_id ='$idbranche'";
+            $bdd->query($sql);
 
 
 
@@ -95,8 +96,10 @@ session_start();
         $sql = "SELECT * FROM brancheabranche WHERE brancheabranche_brancheactuelle_id ='$_GET[id]'"; //ou =branche_id? 
         $res = $bdd->query($sql);
         while ($ligne = $res->fetch()) {
+            $idbranchesuivante=$ligne['brancheabranche_branchesuivante_id'];
         ?>
-            <a class="bouton choix" href="branche.php?id=<?= $ligne['brancheabranche_branchesuivante_id'] ?>"> <?= $ligne['brancheabranche_nombouton'] ?></a>
+
+            <a class="bouton choix" href="fonctions/sautbranche.php?idbrsv=<?=$idbranchesuivante?>&idhist=<?=$idhistoire?>"> <?= $ligne['brancheabranche_nombouton'] ?></a>
 
         <?php
         }
