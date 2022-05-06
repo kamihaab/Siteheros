@@ -10,6 +10,7 @@ if (!empty($_POST['login']) and !empty($_POST['password'])) {
     if ($stmt->rowCount() != 0) {
         // Authentication successful
         $row=$stmt->fetch();
+        $_SESSION['iduser'] =$row['usr_id'];
         $_SESSION['login'] = $login;
         $_SESSION['loggedin'] = true;
         $_SESSION['estAdmin'] =$row['usr_estAdmin'];

@@ -15,11 +15,11 @@ session_start();
 
 
     <?php include "Header.php" ?>
-    <main>
-        <?php
-    if (isUserConnected()) {
-    
-    if (isset($_POST["titre"])) {
+
+    <body>
+    <?php
+    if (isUserConnected()&&isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true) {
+        if (isset($_POST["titre"])){
     //histoire_titre histoire_image histoire_resume histoire_branche_id 
         $titre = addslashes($_POST['titre']);
         //$image = addslashes($_POST['image']);
@@ -40,11 +40,11 @@ session_start();
         $requete->execute(array($titre,$name, $resume));
         //var_dump($requete);
         //header('Location: index.php');
-        //exit;
-    }
-}
+        //exit; 
+        }
     ?>
-    <body>
+    <main>
+
         <div class="container"> <!--Ajout d'un film-->
             <form action="AjouterHistoire.php" name="inscription" enctype="multipart/form-data" method="POST">
                 <h1>Ajouter une histoire</h1>
@@ -61,6 +61,14 @@ session_start();
                 <input type="submit" id='submit' class="submit" value='Ajouter' >
             </form>
         </div>
+</main>
+
+<?php }
+else{
+    header('location: index.php');
+    exit;
+}
+?>
     </body>
 </html>
 
