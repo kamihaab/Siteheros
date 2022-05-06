@@ -28,31 +28,11 @@ session_start();
             $idhistoire=$ligne['branche_histoire_id'];
 
             ////////////////////////////////////////////////
-            /*
-            $histoire=$ligne['branche_histoire_id']; //on recupère l'histoire associée à la branche
-            $requeteVieInitiale="SELECT histoire_vie FROM histoire WHERE histoire_branche_id ='$histoire'"; //on prend la vie initiale de l'histoire
-            $res=$bdd->query($requeteVieInitiale);
-            $ligne=$res->fetch();
-            $vieinitiale = $ligne['histoire_vie'];
-            $vie;
-            //On regarde si la table histoire en cours est vide 
             
-            $reqCheck ="SELECT histoireEnCours_vie FROM histoireEnCours WHERE
-            histoireEnCours_branche_id=
-            (SELECT histoire_branche_id  FROM histoire WHERE histoire_id='$histoire')"; //Where avec le user_id??
-            $resCheck=$bdd->query($reqCheck);
-            if(empty($resCheck)){
-                $vie=$vieinitiale;
-                $requete = $bdd->prepare("INSERT INTO histoireEnCours (`histoireEnCours_vie`) VALUES(?)"); 
-                $requete->execute(array($vie));
-
-            }
-            else{
-                */
             $requeteVie = "SELECT histoireEnCours_vie FROM histoireEnCours WHERE histoireEnCours_branche_id ='$idbranche'";
             $resVie = $bdd->query($requeteVie);
             $ligneVie = $resVie->fetch();
-            print_r($ligneVie);
+            //print_r($ligneVie);
             $vie = $ligneVie['histoireEnCours_vie'] - $ligne['branche_vie'];
             //On va maintenant enregistrer la variable vie dans la table histoire en cours associée au user_id
             //$requeteUser="SELECT * FROM branche WHERE branche_id='$_GET[id]'";
@@ -66,17 +46,7 @@ session_start();
 
 
         }
-        /*Ancienne technique
-            if ($ligne['branche_id']!=='2'){
-                $vie=$ligne['histoireEnCours_vie'] - $ligne['branche_vie'];
-                //vieencours dans histoire en cours 
-                //vie initiale dans histoire pour laisser le mec choisir
-
-            }
-            if ($ligne['branche_id']==='2'){
-                $vie=$vieinitiale - $ligne['branche_vie'];
-            }
-            */
+       
         //////////////////////////////////////////////////////////////////////////////////////
         ?>
 
@@ -91,8 +61,10 @@ session_start();
             <?= $vie ?>
         </p>
         <br><br><br>
+
         <!---->
         <?php
+        
         $sql = "SELECT * FROM brancheabranche WHERE brancheabranche_brancheactuelle_id ='$_GET[id]'"; //ou =branche_id? 
         $res = $bdd->query($sql);
         while ($ligne = $res->fetch()) {
@@ -103,6 +75,28 @@ session_start();
 
         <?php
         }
+        
+
+        if ($vie<=0){
+            ?>
+            <p> 
+        <img src="../images/perdu.gif" alt="c'est perdu">
+        </br>
+            Vous avez perdu ! 
+    </p> <a class="bouton choix" href="index.php"> Retourner à la page d'accueil </a>;
+    <?php
+        }
+        if(empty($idbranchesuivante) && ($vie>0)){
+            ?>
+            <p> 
+            <img src="../images/gagne.gif" alt="c'est gagné">
+            </br>
+                Vous avez gagné ! 
+            </p> <a class="bouton choix" href="index.php"> Tenter de gagner une autre histoire! </a>
+            <?php
+        }
+
+    
 
 
         ?>
