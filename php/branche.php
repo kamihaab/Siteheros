@@ -27,6 +27,7 @@ session_start();
             $paragraphe=$ligne['branche_paragraphe'];
 
             ////////////////////////////////////////////////
+            /*
             $histoire=$ligne['branche_histoire_id']; //on recupère l'histoire associée à la branche
             $requeteVieInitiale="SELECT histoire_vie FROM histoire WHERE histoire_branche_id ='$histoire'"; //on prend la vie initiale de l'histoire
             $res=$bdd->query($requeteVieInitiale);
@@ -34,18 +35,24 @@ session_start();
             $vieinitiale = $ligne['histoire_vie'];
             $vie;
             //On regarde si la table histoire en cours est vide 
-            $reqCheck ="SELECT histoireEnCours_vie FROM histoireEnCours"; //Where avec le user_id??
-            if(empty($reqCheck)){
+            
+            $reqCheck ="SELECT histoireEnCours_vie FROM histoireEnCours WHERE
+            histoireEnCours_branche_id=
+            (SELECT histoire_branche_id  FROM histoire WHERE histoire_id='$histoire')"; //Where avec le user_id??
+            $resCheck=$bdd->query($reqCheck);
+            if(empty($resCheck)){
                 $vie=$vieinitiale;
                 $requete = $bdd->prepare("INSERT INTO histoireEnCours (`histoireEnCours_vie`) VALUES(?)"); 
                 $requete->execute(array($vie));
 
             }
             else{
+                
                 $requeteVie="SELECT histoireEnCours_vie FROM histoireEnCours WHERE histoireEnCours_branche_id ='$_GET[id]'";
                 $res=$bdd->query($requeteVie);
                 $ligne=$res->fetch();
-                $vie=$ligne['histoireEnCours_vie']- $ligne['branche_vie'];
+                */
+                $vie=$_GET['vieinitiale']- $ligne['branche_vie'];
                 //On va maintenant enregistrer la variable vie dans la table histoire en cours associée au user_id
             //$requeteUser="SELECT * FROM branche WHERE branche_id='$_GET[id]'";
             //$_SESSION['login']
@@ -53,6 +60,7 @@ session_start();
                 SET histoireEnCours_vie='$vie'
                 WHERE histoireEnCours_branche_id ='$_GET[id]'";
                 $bdd->query($sql);
+            
 
 
 
@@ -78,7 +86,7 @@ session_start();
             <br><br><br>
             <!-- On ajoute la vie -->
             <p>
-            <img class="pv" src="../image/vie.png" alt="image coeur">
+            <img class="pv" src="../images/vie.png" alt="image coeur">
             <?=$vie?></p>
             <br><br><br>
             <!---->
