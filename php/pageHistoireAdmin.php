@@ -111,7 +111,7 @@ session_start();
             </br>
             </br>
             
-            <a class="bouton gauche" href="fonctions/rajouteBranche.php?idhistoire=<?= $id ?>">Rajouter Branche</a>
+            <a id="ab" class="bouton gauche" href="fonctions/rajouteBranche.php?idhistoire=<?= $id ?>">Rajouter Branche</a>
             <?php
             $sql = "SELECT * FROM branche WHERE branche_histoire_id='$id'";
             $res1 = $bdd->query($sql);

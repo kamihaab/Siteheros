@@ -29,10 +29,14 @@ if (isset($_GET['idbrancheprecedente']))
     $sql="INSERT INTO brancheabranche (brancheabranche_brancheactuelle_id,brancheabranche_branchesuivante_id) VALUES ($idbrancheprecedente,$lastid)";
     $bdd->query($sql);
 }
+header('location: ../pageHistoireAdmin.php?id='.$idHistoire.'#ab');
+exit;
 
 }
-header('location: ../pageHistoireAdmin.php?id='.$idHistoire);
+else{
+header('location: ../pageHistoire.php?id='.$idHistoire);
 exit;
+}
 }
 
 else
