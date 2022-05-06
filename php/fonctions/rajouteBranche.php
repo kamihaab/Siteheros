@@ -21,6 +21,7 @@ if (isset($_GET['idbranchesuivante']))
 
     $sql="INSERT INTO brancheabranche (brancheabranche_brancheactuelle_id,brancheabranche_branchesuivante_id) VALUES ($lastid,$idbranchesuivante)";
     $bdd->query($sql);
+    
 }
 if (isset($_GET['idbrancheprecedente']))
 {
@@ -29,7 +30,7 @@ if (isset($_GET['idbrancheprecedente']))
     $sql="INSERT INTO brancheabranche (brancheabranche_brancheactuelle_id,brancheabranche_branchesuivante_id) VALUES ($idbrancheprecedente,$lastid)";
     $bdd->query($sql);
 }
-header('location: ../pageHistoireAdmin.php?id='.$idHistoire.'#ab');
+header('location: ../pageHistoireAdmin.php?id='.$idHistoire.'#anchora');
 exit;
 
 }

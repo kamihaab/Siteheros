@@ -13,7 +13,7 @@ $idbrancheprecedente=$_GET['idbrancheprecedente'];
 $sql="DELETE FROM brancheabranche WHERE brancheabranche_brancheactuelle_id='$idbrancheprecedente' AND brancheabranche_branchesuivante_id='$idbrancheactuelle'";
 $bdd->query($sql);
 }
-header('location: ../pageHistoireAdmin.php?id='.$idHistoire);
+header('location: ../pageHistoireAdmin.php?id='.$idHistoire.'#anchora');
 exit;
 }
 else

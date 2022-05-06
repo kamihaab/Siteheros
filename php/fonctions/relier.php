@@ -17,7 +17,7 @@ if (isset($_GET['idbrancheactuelle'])&&isset($_GET['idbranchesuivante']))
 }
 
 }
-header('location: ../pageHistoireAdmin.php?id='.$idHistoire);
+header('location: ../pageHistoireAdmin.php?id='.$idHistoire.'#anchora');
 exit;
 }
 
