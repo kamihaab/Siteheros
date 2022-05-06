@@ -48,6 +48,7 @@ session_start();
         <div class="container"> <!--Ajout d'un film-->
             <form action="AjouterHistoire.php" name="inscription" enctype="multipart/form-data" method="POST">
                 <h1>Ajouter une histoire</h1>
+                </br>
 
                 <label><b>Titre </b></label>
                 <input type="text" placeholder="titre" name="titre" required>
