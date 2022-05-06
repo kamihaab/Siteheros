@@ -84,7 +84,7 @@ session_start();
         </br>
             Vous avez perdu ! 
     </p> <a class="bouton choix" href="index.php"> Retourner à la page d'accueil </a>;
-    <?php
+    <?php //Faire un redirect vers initialisé histoire ou créer réinitialiser histoire pour remettre les compteurs a zéro?
         }
         if(empty($idbranchesuivante) && ($vie>0)){
             ?>
