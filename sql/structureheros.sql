@@ -26,7 +26,7 @@ create table branche(
     branche_id integer not null primary key auto_increment,
     branche_titre varchar(20),
     branche_paragraphe varchar(500) DEFAULT "pararagraphe à rentrer",
-    branche_image varchar(150),
+    branche_image varchar(150) DEFAULT "defaultimage",
     branche_histoire_id integer,
     branche_vie integer DEFAULT 0,
     FOREIGN KEY (branche_histoire_id) references histoire(histoire_id) ON DELETE CASCADE

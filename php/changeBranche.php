@@ -28,12 +28,18 @@ session_start();
         $titre = $ligne['branche_titre'];
         $paragraphe = $ligne['branche_paragraphe'];
         $idhistoire = $ligne['branche_histoire_id'];
+        $vie= $ligne['branche_vie'];
+
+
         if (isset($_POST['titre'])) {
             $titre = addslashes($_POST['titre']);
             $paragraphe = addslashes($_POST['paragraphe']);
+            $vie=$_POST['vie'];
             $sql = "UPDATE branche
                 SET branche_titre='$titre',
-                branche_paragraphe='$paragraphe'
+                branche_paragraphe='$paragraphe',
+                branche_vie='$vie'
+
                 WHERE branche_id='$id'";
             $bdd->query($sql);
 
@@ -45,15 +51,15 @@ session_start();
                     unlink($fichier);
                 }
     
-                $tmpName = $_FILES['file']['tmp_name'];
-                $fullname = $_FILES['file']['name'];
+                $tmpName = $_FILES['image']['tmp_name'];
+                $fullname = $_FILES['image']['name'];
                 $name = explode('.', $fullname)[0]; //split string when there is a "." so full name is with png jpg etc
     
                 move_uploaded_file($tmpName, '../images/' . $fullname);
     
-                $sql = "UPDATE histoire
-                    SET histoire_image='$name'
-                    WHERE histoire_id='$id'";
+                $sql = "UPDATE branche
+                    SET branche_image='$name'
+                    WHERE branche_id='$id'";
                 $bdd->query($sql);
             }
 
@@ -80,6 +86,9 @@ session_start();
 
                     <label><b>Résumé</b></label>
                     <textarea name="paragraphe"><?= $paragraphe ?></textarea>
+
+                    <label><b>Vie </b></label>
+                    <input type="number" name="vie" value=<?= $vie ?>>
 
                     <input type="submit" id='submit' class="submit" value='Ajouter'>
                 </form>

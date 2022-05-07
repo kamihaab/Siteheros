@@ -20,7 +20,19 @@ session_start();
             $id = $_GET['id'];
 
 
+            if (isset($_POST['nombouton']))
+            {
+                $idbrancheactuelle=$_GET['idbrancheactuelle'];
+                $idbranchesuivante=$_GET['idbranchesuivante'];
+                $nombouton=addslashes($_POST['nombouton']);
 
+                $sql = "UPDATE brancheabranche
+                SET brancheabranche_nombouton='$nombouton'
+                WHERE brancheabranche_brancheactuelle_id='$idbrancheactuelle'
+                AND brancheabranche_branchesuivante_id='$idbranchesuivante'";
+
+                $bdd->query($sql);
+            }
             if (isset($_POST['titre'])) {
                 $titre = addslashes($_POST['titre']);
                 $sql = "UPDATE histoire
@@ -38,19 +50,21 @@ session_start();
                 $bdd->query($sql);
             }
             if (isset($_FILES['file']) && $_FILES['file']['error'] == 0) {
+                $tmpName = $_FILES['file']['tmp_name'];
+                $fullname = $_FILES['file']['name'];
+                $name = explode('.', $fullname)[0]; //split string when there is a "." so full name is with png jpg etc
+
                 $sql = "SELECT * FROM histoire WHERE histoire_id='$id'";
                 $res = $bdd->query($sql);
                 $ligne = $res->fetch();
                 $images = glob("../images/" . $ligne['histoire_image'] . '.{jpg,png}', GLOB_BRACE);
                 $fichier = $images[0];
-                if (file_exists($fichier)) {
+                if (file_exists($fichier) && ($fichier)!="defaultimage.jpg") {
+
                     unlink($fichier);
                 }
 
-                $tmpName = $_FILES['file']['tmp_name'];
-                $fullname = $_FILES['file']['name'];
-                $name = explode('.', $fullname)[0]; //split string when there is a "." so full name is with png jpg etc
-
+         
                 move_uploaded_file($tmpName, '../images/' . $fullname);
 
                 $sql = "UPDATE histoire
@@ -175,7 +189,7 @@ session_start();
             </h5>
 
                         <?php
-                        $sql = "SELECT branche_titre,branche_id
+                        $sql = "SELECT branche_titre,branche_id,brancheabranche_nombouton
                         FROM branche B, brancheabranche BB
                           WHERE B.branche_id=BB.brancheabranche_brancheactuelle_id
                            AND BB.brancheabranche_branchesuivante_id='$idbranchebandeau'";
@@ -183,6 +197,7 @@ session_start();
                         while ($brancheprecedente = $res2->fetch()) {
                             $titrebrancheprecendente = $brancheprecedente['branche_titre'];
                             $branche_idprecedente = $brancheprecedente['branche_id'];
+                            $nombouton=$brancheprecedente['brancheabranche_nombouton'];
                         ?>
                             <li>
                                 <div class="container">
@@ -196,6 +211,10 @@ session_start();
                                         </a>
                                     </div>
                                 </div>
+                                <form action="pageHistoireAdmin.php?id=<?= $id ?>&idbrancheactuelle=<?=$branche_idprecedente?>&idbranchesuivante=<?=$idbranchebandeau?>#<?=$idbranchebandeau?>" method="POST">
+                                    <label><b>Nom Bouton</b></label>
+                                    <input name="nombouton" class="passagebranche"type="text" value='<?=$nombouton?>'>
+                                </form>
                             </li>
                         <?php
                         }
@@ -230,7 +249,7 @@ session_start();
                             </div>
                         </h5>
                         <?php
-                        $sql = "SELECT branche_titre,branche_id
+                        $sql = "SELECT branche_titre,branche_id,brancheabranche_nombouton
                         FROM branche B, brancheabranche BB
                           WHERE B.branche_id=BB.brancheabranche_branchesuivante_id
                            AND BB.brancheabranche_brancheactuelle_id='$idbranchebandeau'";
@@ -238,6 +257,7 @@ session_start();
                         while ($branchesuivante = $res2->fetch()) {
                             $titrebranchesuivante = $branchesuivante['branche_titre'];
                             $branche_idsuivante = $branchesuivante['branche_id'];
+                            $nombouton=$branchesuivante['brancheabranche_nombouton'];
                         ?>
                             <li>
                                 <div class="container">
@@ -251,6 +271,10 @@ session_start();
                                         </a>
                                     </div>
                                 </div>
+                                <form action="pageHistoireAdmin.php?id=<?= $id ?>&idbrancheactuelle=<?=$idbranchebandeau?>&idbranchesuivante=<?=$branche_idsuivante?>#<?=$idbranchebandeau?>" method="POST">
+                                    <label><b>Nom Bouton</b></label>
+                                    <input name="nombouton" class="passagebranche"type="text" value='<?=$nombouton?>'>
+                                </form>
                             </li>
                         <?php
                         }
