@@ -39,9 +39,33 @@ session_start();
                 $nomImage = $images[0]; //On m'indique une erreur ici? 
                 $titre = $ligne['histoire_titre'];
                 $id=$ligne['histoire_id'];
-                ?>
 
+            if (isset( $_SESSION['loggedin'])&& $_SESSION['loggedin']==true)
+                {
+            $sql = "SELECT histoireEnCours_branche_id FROM histoireEnCours
+             WHERE histoireEnCours_usr_id='$_SESSION[iduser]'
+             AND histoireEnCours_branche_id IN
+             (SELECT branche_id FROM branche WHERE branche_histoire_id='$id')";
+             $res1 = $bdd->query($sql);
+            if($ligne=$res1->fetch())
+            {
+                ?>
                 <h3>En cours</h3>
+                <?php
+            }
+            else{
+                ?>
+                <h3>Non commencé</h3>
+                <?php
+            }
+        }
+        else{
+            ?>
+            </br>
+            <?php
+        }
+            ?>
+            
                 <?php
                 if (isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true) {
                 ?>
