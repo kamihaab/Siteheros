@@ -22,7 +22,10 @@ session_start();
             $ligne = $res->fetch();
 
             $images = glob("../images/" . $ligne['branche_image'] . '.{jpg,png}', GLOB_BRACE);
+            if (count($images)>0)
+            {
             $nomImage = $images[0];
+            }
             $titre = $ligne['branche_titre'];
             $paragraphe = $ligne['branche_paragraphe'];
             $idhistoire=$ligne['branche_histoire_id'];
@@ -37,12 +40,17 @@ session_start();
             //$requeteUser="SELECT * FROM branche WHERE branche_id='$_GET[id]'";
             //$_SESSION['login']
         }
-       
+        
         //////////////////////////////////////////////////////////////////////////////////////
+        if (count($images)>0)
+        {
+            ?>
+            <img class="FondBranche" src="<?= $nomImage ?>" alt="image de <?= $nomImage ?>">
+            <h2><?= $titre ?></h2>
+            <?php
+        }
         ?>
-
-        <img class="FondBranche" src="<?= $nomImage ?>" alt="image de <?= $nomImage ?>">
-        <h2><?= $titre ?></h2>
+     
         <br><br><br><br><br>
         <p><?= $paragraphe ?></p>
         <br><br><br>

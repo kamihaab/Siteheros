@@ -18,7 +18,7 @@ session_start();
 
     <body>
     <?php
-    if (isUserConnected()&&isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true) {
+    if (isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] = true) {
         if (isset($_POST["titre"])){
     //histoire_titre histoire_image histoire_resume histoire_branche_id 
         $titre = addslashes($_POST['titre']);
@@ -41,6 +41,8 @@ session_start();
         //var_dump($requete);
         //header('Location: index.php');
         //exit; 
+        header('location: index.php');
+        exit; 
         }
     ?>
     <main>
@@ -54,7 +56,7 @@ session_start();
                 <input type="text" placeholder="titre" name="titre" required>
 
                 <label><b> Image</b></label>
-                <input type="file" placeholder="image" name="image">
+                <input type="file" placeholder="image" name="image" required>
 
                 <label><b>Résumé</b></label>
                 <input type="text" placeholder="Resume" name="resume" required>
@@ -62,8 +64,7 @@ session_start();
                 <input type="submit" id='submit' class="submit" value='Ajouter' >
             </form>
         </div>
-        <?php header('location: index.php');
-        exit; ?>
+
 </main>
 
 <?php }

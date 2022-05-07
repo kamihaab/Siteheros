@@ -45,6 +45,8 @@ session_start();
             </p>
             </br>
             <?php
+            if (isset( $_SESSION['loggedin'])&& $_SESSION['loggedin']==true)
+            {
             $sql = "SELECT histoireEnCours_branche_id FROM histoireEnCours
              WHERE histoireEnCours_usr_id='$_SESSION[iduser]'
              AND histoireEnCours_branche_id IN
@@ -64,7 +66,9 @@ session_start();
              }
 
         //On va initialiser histoire en cours avec la vie initiale 
+            }
         }
+
         ?>
 
     </main>

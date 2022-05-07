@@ -75,7 +75,7 @@ session_start();
         ?>
 
             <form action="pageHistoireAdmin.php?id=<?= $id ?> " method="POST">
-                <textarea name="titre"><?= $titre ?></textarea>
+                <textarea class="txtar"name="titre"><?= $titre ?></textarea>
                 </br>
                 <button type="submit">Enregistrer</button>
             </form>
@@ -99,7 +99,7 @@ session_start();
 
             <p class="breakword">
             <form action="pageHistoireAdmin.php?id=<?= $id ?> " method="POST">
-                <textarea name="resume"><?= $resume ?></textarea>
+                <textarea class="txtar" name="resume"><?= $resume ?></textarea>
                 </br>
                 <button type="submit">Enregistrer</button>
             </form>
@@ -136,9 +136,14 @@ session_start();
                 $titrebandeau = $branchebandeau['branche_titre'];
                 $idbranchebandeau = $branchebandeau['branche_id'];
             ?>
-                <div id="<?= $idbranchebandeau ?>" class="branche" tabindex="0">
+                <div id="<?=$idbranchebandeau?>" class="branche" tabindex="0">
                     <div class="container bandeauBranche">
-                        <h4><?= $titrebandeau ?></h4>
+                        <h4>
+                                        <form action="fonctions/changebranche.php?idhistoire=<?=$id?>&idbranche=<?=$idbranchebandeau?>" method="POST">
+                                <input type="text" class="titrebranche" name="titrebranche" value=<?=$titrebandeau?>>
+                            </form>
+                            
+                        </h4>
                         <a href="fonctions/supprimeBranche.php?idbranche=<?= $idbranchebandeau ?>&idhistoire=<?= $id ?>">
                             <img class="boutonbranche droite" src=../images/poubelle.jpg alt="symbole Poubelle">
                         </a>
@@ -250,9 +255,7 @@ session_start();
                         <?php
                         }
                         ?>
-
-
-                        <a class="bouton changerbranche" href="branche.php?id=1">Changer la branche</a>
+                        <a class="bouton changerbranche" href="changeBranche.php?id=<?=$idbranchebandeau?>">Changer la branche</a>
                     </ul>
                 </div>
             <?php
