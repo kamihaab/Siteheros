@@ -26,25 +26,16 @@ session_start();
             $titre = $ligne['branche_titre'];
             $paragraphe = $ligne['branche_paragraphe'];
             $idhistoire=$ligne['branche_histoire_id'];
-
+            $iduser=$_SESSION['iduser'];
             ////////////////////////////////////////////////
             
-            $requeteVie = "SELECT histoireEnCours_vie FROM histoireEnCours WHERE histoireEnCours_branche_id ='$idbranche'";
+            $requeteVie = "SELECT histoireEnCours_vie FROM histoireEnCours WHERE histoireEnCours_branche_id ='$idbranche' AND histoireEnCours_usr_id='$iduser'";
             $resVie = $bdd->query($requeteVie);
             $ligneVie = $resVie->fetch();
-            //print_r($ligneVie);
-            $vie = $ligneVie['histoireEnCours_vie'] - $ligne['branche_vie'];
+            $vie = $ligneVie['histoireEnCours_vie'];
             //On va maintenant enregistrer la variable vie dans la table histoire en cours associée au user_id
             //$requeteUser="SELECT * FROM branche WHERE branche_id='$_GET[id]'";
             //$_SESSION['login']
-            $sql = "UPDATE histoireEnCours
-                SET histoireEnCours_vie='$vie'
-                WHERE histoireEnCours_branche_id ='$idbranche'";
-            $bdd->query($sql);
-
-
-
-
         }
        
         //////////////////////////////////////////////////////////////////////////////////////
@@ -71,22 +62,27 @@ session_start();
             $idbranchesuivante=$ligne['brancheabranche_branchesuivante_id'];
         ?>
 
-            <a class="bouton choix" href="fonctions/sautbranche.php?idbrsv=<?=$idbranchesuivante?>&idhist=<?=$idhistoire?>"> <?= $ligne['brancheabranche_nombouton'] ?></a>
+            <a class="bouton choix" href="fonctions/sautbranche.php?idbrsv=<?=$idbranchesuivante?>&idbractuelle=<?=$idbranche?>"> <?= $ligne['brancheabranche_nombouton'] ?></a>
 
         <?php
         }
         
 
         if ($vie<=0){
+            require("fonctions/finiHistoire.php");
+            finiHistoire($bdd,$iduser,$idhistoire);
             ?>
             <p> 
         <img src="../images/perdu.gif" alt="c'est perdu">
         </br>
             Vous avez perdu ! 
+            
     </p> <a class="bouton choix" href="index.php"> Retourner à la page d'accueil </a>;
     <?php //Faire un redirect vers initialisé histoire ou créer réinitialiser histoire pour remettre les compteurs a zéro?
         }
         if(empty($idbranchesuivante) && ($vie>0)){
+            require("fonctions/finiHistoire.php");
+            finiHistoire($bdd,$iduser,$idhistoire);
             ?>
             <p> 
             <img src="../images/gagne.gif" alt="c'est gagné">

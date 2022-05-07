@@ -44,9 +44,25 @@ session_start();
                 <?= $resume ?>
             </p>
             </br>
+            <?php
+            $sql = "SELECT histoireEnCours_branche_id FROM histoireEnCours
+             WHERE histoireEnCours_usr_id='$_SESSION[iduser]'
+             AND histoireEnCours_branche_id IN
+             (SELECT branche_id FROM branche WHERE branche_histoire_id='$id')";
+             $res1 = $bdd->query($sql);
+            if($ligne=$res1->fetch())
+            {
+                $idbrancheencours=$ligne['histoireEnCours_branche_id'];
+                ?>
+                <a class="bouton commencerHistoire" href="branche.php?id=<?=$idbrancheencours?>"> Continuer</a> 
+                <a class="bouton commencerHistoire" href="fonctions/initialisationHistoire.php?idbranche=<?= $idbranche ?>&idhistoire=<?= $id?>&recommence=true"> Recommencer histoire</a>
+                <?php
+            }
+             else{?>
             <a class="bouton commencerHistoire" href="fonctions/initialisationHistoire.php?idbranche=<?= $idbranche ?>&idhistoire=<?= $id?>"> Commencer une nouvelle histoire</a>
-        <?php
-        
+                <?php
+             }
+
         //On va initialiser histoire en cours avec la vie initiale 
         }
         ?>

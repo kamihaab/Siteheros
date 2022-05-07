@@ -2,7 +2,7 @@
 session_start();
 require_once("connect.php");
 
-        if (isset($_SESSION['iduser'])&&isset($_GET['idhistoire'])&&isset($_GET['idbranche'])) { 
+        if (isset($_SESSION['iduser'])&&isset($_GET['idhistoire'])&&isset($_GET['idbranche'])) {
             $idbranche=$_GET['idbranche'];
             $idhistoire=$_GET['idhistoire'];
             $requeteVieInitiale="SELECT histoire_vie FROM histoire WHERE histoire_id='$idhistoire'"; //on prend la vie initiale de l'histoire
@@ -11,8 +11,16 @@ require_once("connect.php");
             print_r($ligneVie);
             $idUser=$_SESSION['iduser'];
             $vieinitiale = $ligneVie['histoire_vie'];
+
+            if (isset($_GET['recommence'])&&$_GET['recommence']="true")
+            {
+                require("finiHistoire.php");
+                finiHistoire($bdd,$idUser,$idhistoire);
+            }
+
             $requete = $bdd->prepare("INSERT INTO histoireEnCours (`histoireEnCours_usr_id`,`histoireEnCours_vie`,`histoireEnCours_branche_id`) VALUES(?,?,?)"); 
             $requete->execute(array($idUser,$vieinitiale,$idbranche));
+
             header('location: ../branche.php?id='.$idbranche);
             exit;
 
