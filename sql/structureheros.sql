@@ -18,8 +18,9 @@ create table histoire(
     histoire_image varchar(150),
     histoire_resume varchar (500),
     histoire_branche_id integer,
-    histoire_vie integer
-
+    histoire_vie integer,
+    histoire_nombre_essai integer DEFAULT 0,
+    histoire_nombre_reussite integer DEFAULT 0
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
 
 create table branche(

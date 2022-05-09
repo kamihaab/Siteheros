@@ -75,14 +75,16 @@ session_start();
 
             $sql = "SELECT * FROM histoire WHERE histoire_id='$id'";
             $res = $bdd->query($sql);
-            $ligne = $res->fetch();
+            $lignehistoire = $res->fetch();
 
-            $idbranche = $ligne['histoire_branche_id'];
+            $idbranche = $lignehistoire['histoire_branche_id'];
 
-            $images = glob("../images/" . $ligne['histoire_image'] . '.{jpg,png}', GLOB_BRACE);
+            $images = glob("../images/" . $lignehistoire['histoire_image'] . '.{jpg,png}', GLOB_BRACE);
             $nomImage = $images[0];
-            $titre = $ligne['histoire_titre'];
-            $resume = $ligne['histoire_resume'];
+            $titre = $lignehistoire['histoire_titre'];
+            $resume = $lignehistoire['histoire_resume'];
+            $nombre_essai = $lignehistoire['histoire_nombre_essai'];
+            $nombre_reussite = $lignehistoire['histoire_nombre_reussite'];
 
 
 
@@ -139,9 +141,12 @@ session_start();
                 <?php
              }
              ?>
+
+                    <h3 class="stat">Nombre d'essai : <?=$nombre_essai?></h3>
+                    <h3 class="stat">Nombre de réussite : <?=$nombre_reussite?></h3>
             </br>
             </br>
-            
+     
             <a id="anchora" class="bouton gauche" href="fonctions/rajouteBranche.php?idhistoire=<?= $id ?>">Rajouter Branche</a>
             <?php
             $sql = "SELECT * FROM branche WHERE branche_histoire_id='$id'";

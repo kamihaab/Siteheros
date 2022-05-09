@@ -78,7 +78,7 @@ session_start();
 
         if ($vie<=0){
             require("fonctions/finiHistoire.php");
-            finiHistoire($bdd,$iduser,$idhistoire);
+            finiHistoire($bdd,$iduser,$idhistoire,false);
             ?>
             <p> 
         <img src="../images/perdu.gif" alt="c'est perdu">
@@ -90,7 +90,7 @@ session_start();
         }
         if(empty($idbranchesuivante) && ($vie>0)){
             require("fonctions/finiHistoire.php");
-            finiHistoire($bdd,$iduser,$idhistoire);
+            finiHistoire($bdd,$iduser,$idhistoire,true);
             ?>
             <p> 
             <img src="../images/gagne.gif" alt="c'est gagné">
