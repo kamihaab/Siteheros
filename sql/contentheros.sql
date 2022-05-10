@@ -10,6 +10,10 @@ ALTER TABLE histoire auto_increment=1;
 DELETE FROM  histoireEnCours;
 DELETE FROM brancheabranche;
 
+insert into user(usr_login,usr_password,usr_estAdmin) values
+("correcteur","$2y$10$Ytx1OwlCNkg.xPgFGjsMVe3L9nMIg/tCJVxoX38.iCj1p6B7I1zoa",0),
+("correcteur_admin","$2y$10$Ytx1OwlCNkg.xPgFGjsMVe3L9nMIg/tCJVxoX38.iCj1p6B7I1zoa",1);
+
 insert into histoire(histoire_titre,histoire_image,histoire_resume,histoire_branche_id,histoire_vie) values
 ("OUIIIIIIIIII","escargot","WHEEEEEEEEEEEEEEEEEEEE, cet escargot refait votre journée",1,10),
 ("LEEEEE RATATAT","ratatouille","Vous incarnez un rat, WOWOWOWOOWOWOWOWOWO!!!!",2,10),
