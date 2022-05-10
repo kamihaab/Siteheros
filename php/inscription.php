@@ -76,6 +76,7 @@ session_start();
  
       // Si "valid" est bien true, on peut procéder au traitement 
       if($valid){
+        $password=password_hash($password, PASSWORD_BCRYPT);
         //On hâche le mot de passe
         //$password = crypt($password, "$6$rounds=5000$macleapersonnaliseretagardersecret$"); //le fameux hachage de mot de passe
         // On insert nos données dans la table user (Pour les admin faire un if si jamais ils ont coché admin?)

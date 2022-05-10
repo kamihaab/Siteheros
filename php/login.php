@@ -5,21 +5,20 @@ session_start();
 if (!empty($_POST['login']) and !empty($_POST['password'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
-    $stmt = $bdd->prepare('select * from user where usr_login=? and usr_password=?');
-    $stmt->execute(array($login, $password));
-    if ($stmt->rowCount() != 0) {
+    $stmt = $bdd->query("select * from user where usr_login='$login'");
+    while($row=$stmt->fetch()) {
         // Authentication successful
-        $row=$stmt->fetch();
+
+        if (password_verify($password,$row['usr_password'])){
         $_SESSION['iduser'] =$row['usr_id'];
         $_SESSION['login'] = $login;
         $_SESSION['loggedin'] = true;
         $_SESSION['estAdmin'] =$row['usr_estAdmin'];
         header('Location: index.php');
         exit;
+        }
     }
-    else {
-        $error = "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
-    }
+    $error = "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
 }
 ?><html>
     <head>
