@@ -8,7 +8,7 @@ require_once("connect.php");
     $idbractuelle=$_GET['idbractuelle'];
     $idbranchesuivante=$_GET['idbrsv'];
 
-    $requeteVie = "SELECT histoireEnCours_vie FROM histoireEnCours WHERE histoireEnCours_branche_id ='$idbractuelle'";
+    $requeteVie = "SELECT histoireEnCours_vie,histoireEnCours_filAriane FROM histoireEnCours WHERE histoireEnCours_branche_id ='$idbractuelle'";
     $resVie = $bdd->query($requeteVie);
 
     $ligneVie = $resVie->fetch();
@@ -18,13 +18,13 @@ require_once("connect.php");
     $ligne = $res->fetch();
     print_r($ligne);
 
-    $wesh=$ligneVie['histoireEnCours_vie'];
-    $wesh2=$ligne['branche_vie'];
-    $vie = $ligneVie['histoireEnCours_vie'] - $ligne['branche_vie'];
 
+    $vie = $ligneVie['histoireEnCours_vie'] - $ligne['branche_vie'];
+    $filAriane=$ligneVie['histoireEnCours_filAriane'].",".$idbractuelle;
     $sql = "UPDATE histoireEnCours
     SET histoireEnCours_vie='$vie',
-    histoireEnCours_branche_id='$idbranchesuivante'
+    histoireEnCours_branche_id='$idbranchesuivante',
+    histoireEnCours_filAriane='$filAriane'
     WHERE histoireEnCours_branche_id ='$idbractuelle'";
     $bdd->query($sql);
     header('location: ../branche.php?id='.$idbranchesuivante);

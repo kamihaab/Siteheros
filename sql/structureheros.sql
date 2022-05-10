@@ -37,6 +37,7 @@ create table histoireEnCours (
     histoireEnCours_usr_id integer,
     histoireEnCours_branche_id integer,
     histoireEnCours_vie integer,
+    histoireEnCours_filAriane varchar(500) DEFAULT "-1",
     FOREIGN KEY (histoireEnCours_usr_id) references user(usr_id) ON DELETE CASCADE,
     FOREIGN KEY (histoireEnCours_branche_id) references branche(branche_id)ON DELETE CASCADE
 ) engine=innodb character set utf8 collate utf8_unicode_ci;

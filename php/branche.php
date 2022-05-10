@@ -32,10 +32,24 @@ session_start();
             $iduser=$_SESSION['iduser'];
             ////////////////////////////////////////////////
             
-            $requeteVie = "SELECT histoireEnCours_vie FROM histoireEnCours WHERE histoireEnCours_branche_id ='$idbranche' AND histoireEnCours_usr_id='$iduser'";
+            $requeteVie = "SELECT histoireEnCours_vie,histoireEnCours_filAriane FROM histoireEnCours WHERE histoireEnCours_branche_id ='$idbranche' AND histoireEnCours_usr_id='$iduser'";
             $resVie = $bdd->query($requeteVie);
             $ligneVie = $resVie->fetch();
             $vie = $ligneVie['histoireEnCours_vie'];
+            $filAriane=$ligneVie['histoireEnCours_filAriane'];
+            $mot="(".$filAriane.")";
+            $sql="SELECT branche_titre FROM branche WHERE branche_id IN $mot";
+            $res=$bdd->query($sql);
+            echo "<h2>";
+            echo "Chemin Suivi:";
+            while($ligne=$res->fetch())
+            {
+                echo $ligne['branche_titre'].">";
+            }
+            echo $titre;
+            echo "</h2>";
+
+
             //On va maintenant enregistrer la variable vie dans la table histoire en cours associée au user_id
             //$requeteUser="SELECT * FROM branche WHERE branche_id='$_GET[id]'";
             //$_SESSION['login']
@@ -46,7 +60,7 @@ session_start();
         {
             ?>
             <img class="FondBranche" src="<?= $nomImage ?>" alt="image de <?= $nomImage ?>">
-            <h2><?= $titre ?></h2>
+
             <?php
         }
         ?>

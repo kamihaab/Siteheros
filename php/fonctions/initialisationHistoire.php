@@ -12,7 +12,7 @@ require_once("connect.php");
             $idUser=$_SESSION['iduser'];
             $vieinitiale = $ligneVie['histoire_vie'];
             $nombre_essai=$ligneVie['histoire_nombre_essai']+1;
-
+          
             if (isset($_GET['recommence'])&&$_GET['recommence']="true")
             {
                 require("finiHistoire.php");
