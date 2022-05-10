@@ -159,7 +159,7 @@ session_start();
                     <div class="container bandeauBranche">
                         <h4>
                                         <form action="fonctions/changebranche.php?idhistoire=<?=$id?>&idbranche=<?=$idbranchebandeau?>" method="POST">
-                                <input type="text" class="titrebranche" name="titrebranche" value=<?=$titrebandeau?>>
+                                <input type="text" class="titrebranche" name="titrebranche" value='<?=$titrebandeau?>'>
                             </form>
                             
                         </h4>

@@ -75,16 +75,16 @@ session_start();
             <div class="container">
                 <!--Ajout d'un film-->
                 <form action="changeBranche.php?id=<?=$id?>" name="inscription" enctype="multipart/form-data" method="POST">
-                    <h2>Ajouter une histoire</h2>
+                    <h2>Modification</h2>
                     </br>
 
-                    <label><b>Titre </b></label>
+                    <label><b>Titre du paragraphe</b></label>
                     <input type="text" placeholder="titre" name="titre" value=<?= $titre ?>>
 
                     <label><b> Image</b></label>
                     <input type="file" placeholder="image" name="image">
 
-                    <label><b>Résumé</b></label>
+                    <label><b>Description</b></label>
                     <textarea name="paragraphe"><?= $paragraphe ?></textarea>
 
                     <label><b>Vie </b></label>
