@@ -40,14 +40,14 @@ session_start();
             $mot="(".$filAriane.")";
             $sql="SELECT branche_titre FROM branche WHERE branche_id IN $mot";
             $res=$bdd->query($sql);
-            echo "<h2>";
-            echo "Chemin Suivi:";
+            echo "<h4>";
+            echo "Votre fil d'Ariane:";
             while($ligne=$res->fetch())
             {
                 echo $ligne['branche_titre'].">";
             }
             echo $titre;
-            echo "</h2>";
+            echo "</h4>";
 
 
             //On va maintenant enregistrer la variable vie dans la table histoire en cours associée au user_id
@@ -63,8 +63,10 @@ session_start();
 
             <?php
         }
-        ?>
-     
+        
+         ?>
+         <br><br><br>
+         <p><?=$titre?></p>
         <br><br><br><br><br>
         <p><?= $paragraphe ?></p>
         <br><br><br>
