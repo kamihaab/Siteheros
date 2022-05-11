@@ -23,16 +23,6 @@ session_start();
       $username= $_POST["username"];
       $password= $_POST["password"];
       $confpassword=$_POST["confpassword"];
-      
-      /*
-
-      $name  = htmlentities(trim($name)); // On récupère le nom
-      $surname = htmlentities(trim($surname)); // on récupère le prénom
-      $username = htmlentities(trim($username));
-      $password = trim($password); // On récupère le mot de passe 
-      $confpassword = trim($confpassword); // On récupère la confirmation du mot de passe
-      $valid = true;
-      */
       $admin='0';
       if (isset($_POST["admin"])){
         $admin = true;
@@ -78,12 +68,9 @@ session_start();
       if($valid){
         $password=password_hash($password, PASSWORD_BCRYPT);
         //On hâche le mot de passe
-        //$password = crypt($password, "$6$rounds=5000$macleapersonnaliseretagardersecret$"); //le fameux hachage de mot de passe
-        // On insert nos données dans la table user (Pour les admin faire un if si jamais ils ont coché admin?)
         $requete = $bdd->prepare("INSERT INTO user (`usr_login`, `usr_password`,`usr_estAdmin`) VALUES(?, ?, ?)"); 
         
         $requete->execute(array($username,$password, $admin));
-        //var_dump($requete);
         header('Location: ../php/index.php');
         exit;
       }

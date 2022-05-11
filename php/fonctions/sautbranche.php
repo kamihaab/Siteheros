@@ -16,7 +16,6 @@ require_once("connect.php");
     $requete = "SELECT branche_vie FROM branche WHERE branche_id ='$idbranchesuivante'";
     $res = $bdd->query($requete);
     $ligne = $res->fetch();
-    print_r($ligne);
 
 
     $vie = $ligneVie['histoireEnCours_vie'] - $ligne['branche_vie'];

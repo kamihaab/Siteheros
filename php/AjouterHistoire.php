@@ -20,14 +20,12 @@ session_start();
     <?php
     if (isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] = true) {
         if (isset($_POST["titre"])){
-    //histoire_titre histoire_image histoire_resume histoire_branche_id 
         $titre = addslashes($_POST['titre']);
-        //$image = addslashes($_POST['image']);
         $resume = addslashes($_POST['resume']);
-        //$id = addslashes($_POST['id']);
+        
         
         $tmpFile = $_FILES['image']['tmp_name'];
-            // upload movie image
+            // upload image
             $fullname = $_FILES['image']['name'];
                 $name = explode('.', $fullname)[0];
             $uploadedFile = "../images/$fullname";
@@ -38,9 +36,6 @@ session_start();
         $requete = $bdd->prepare("INSERT INTO histoire (`histoire_titre`, `histoire_image`,`histoire_resume`) VALUES(?, ?, ?)"); 
         
         $requete->execute(array($titre,$name, $resume));
-        //var_dump($requete);
-        //header('Location: index.php');
-        //exit; 
         header('location: index.php');
         exit; 
         }

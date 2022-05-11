@@ -73,7 +73,7 @@ session_start();
         <main>
 
             <div class="container">
-                <!--Ajout d'un film-->
+                <!--Modification/Ajout d'une branche-->
                 <form action="changeBranche.php?id=<?=$id?>" name="inscription" enctype="multipart/form-data" method="POST">
                     <h2>Modification</h2>
                     </br>
