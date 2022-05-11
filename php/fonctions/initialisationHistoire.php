@@ -32,7 +32,7 @@ require_once("connect.php");
 
         }
         else{
-            header('location: ../index.php');
+            header('location: ../../index.php');
             exit;
         }
     

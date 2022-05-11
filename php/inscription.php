@@ -4,7 +4,7 @@ session_start();
 //include('../sql/connexionBDD.php'); //je sais pas si c'est nécessaire 
 // S'il y a une session alors on ne retourne plus sur cette page
 /*if (isset($_SESSION['id'])){
-    header('Location: ../html/index.php');
+    header('Location: ../html/../index.php');
     exit;
   }
   */
@@ -71,7 +71,7 @@ session_start();
         $requete = $bdd->prepare("INSERT INTO user (`usr_login`, `usr_password`,`usr_estAdmin`) VALUES(?, ?, ?)"); 
         
         $requete->execute(array($username,$password, $admin));
-        header('Location: ../php/index.php');
+        header('Location: ../php/../index.php');
         exit;
       }
         

@@ -36,7 +36,7 @@ session_start();
         $requete = $bdd->prepare("INSERT INTO histoire (`histoire_titre`, `histoire_image`,`histoire_resume`) VALUES(?, ?, ?)"); 
         
         $requete->execute(array($titre,$name, $resume));
-        header('location: index.php');
+        header('location: ../index.php');
         exit; 
         }
     ?>
@@ -64,7 +64,7 @@ session_start();
 
 <?php }
 else{
-    header('location: index.php');
+    header('location: ../index.php');
     exit;
 }
 ?>

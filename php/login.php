@@ -1,5 +1,5 @@
 <?php
-require_once "../php/fonctions/connect.php";
+require_once "fonctions/connect.php";
 session_start();
 
 if (!empty($_POST['login']) and !empty($_POST['password'])) {
@@ -14,7 +14,7 @@ if (!empty($_POST['login']) and !empty($_POST['password'])) {
         $_SESSION['login'] = $login;
         $_SESSION['loggedin'] = true;
         $_SESSION['estAdmin'] =$row['usr_estAdmin'];
-        header('Location: index.php');
+        header('Location: ../index.php');
         exit;
         }
     }

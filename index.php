@@ -1,5 +1,5 @@
 <?php
-require_once('fonctions/connect.php');
+require_once('php/fonctions/connect.php');
 session_start();
 ?>
 <!doctype html>
@@ -8,20 +8,20 @@ session_start();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <title> Le Site dont tu es le Héros</title>
 </head>
 
 <body>
 
-    <?php include "Header.php" ?>
+    <?php include "php/HeaderOnIndex.php" ?>
 
     <?php
     if (isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true) {
     ?>
 
     <div>
-    <a class="bouton ajout" href="AjouterHistoire.php">Ajouter une histoire</a>
+    <a class="bouton ajout" href="php/AjouterHistoire.php">Ajouter une histoire</a>
     </div>
     <?php
         }
@@ -35,7 +35,7 @@ session_start();
         ?>
             <div class="Story">
                 <?php
-                $images = glob("../images/" . $ligne['histoire_image'] . '.{jpg,png}', GLOB_BRACE);
+                $images = glob("images/" . $ligne['histoire_image'] . '.{jpg,png}', GLOB_BRACE);
                 $nomImage = $images[0]; //On m'indique une erreur ici? 
                 $titre = $ligne['histoire_titre'];
                 $id=$ligne['histoire_id'];
@@ -70,14 +70,14 @@ session_start();
                 if (isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true) {
                 ?>
                 
-                    <a href="pageHistoireAdmin.php?id=<?= $id ?>">
+                    <a href="php/pageHistoireAdmin.php?id=<?= $id ?>">
                         <img class="imgStory" src="<?= $nomImage ?>" alt="image de <?= $nomImage ?>">
                         <h2><?= $titre ?></h2>
                     </a>
-                <?php
+                <?php   
                 } else {
                 ?>
-                    <a href="pageHistoire.php?id=<?= $id ?>">
+                    <a href="php/pageHistoire.php?id=<?= $id ?>">
                         <img class="imgStory" src="<?= $nomImage ?>" alt="image de <?= $nomImage ?>">
                         <h2><?= $titre ?></h2>
                     </a>

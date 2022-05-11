@@ -101,7 +101,7 @@ session_start();
         </br>
             Vous avez perdu ! 
             
-    </p> <a class="bouton choix" href="index.php"> Retourner à la page d'accueil </a>;
+    </p> <a class="bouton choix" href="../index.php"> Retourner à la page d'accueil </a>;
     <?php //Faire un redirect vers initialisé histoire ou créer réinitialiser histoire pour remettre les compteurs a zéro?
         }
         if(empty($idbranchesuivante) && ($vie>0)){
@@ -112,7 +112,7 @@ session_start();
             <img src="../images/gagne.gif" alt="c'est gagné">
             </br>
                 Vous avez gagné ! 
-            </p> <a class="bouton choix" href="index.php"> Tenter de gagner une autre histoire! </a>
+            </p> <a class="bouton choix" href="../index.php"> Tenter de gagner une autre histoire! </a>
             <?php
         }
 
