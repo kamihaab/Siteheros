@@ -19,7 +19,15 @@ session_start();
         if (isset($_GET['id']) && isset($_SESSION['estAdmin']) && $_SESSION['estAdmin'] == true) {
             $id = $_GET['id'];
 
+            if (isset($_POST['vie']))
+            {
+                $vie=$_POST['vie'];
+                $sql = "UPDATE histoire
+                SET histoire_vie='$vie'
+                WHERE histoire_id='$id'";
 
+                $bdd->query($sql);
+            }
             if (isset($_POST['nombouton']))
             {
                 $idbrancheactuelle=$_GET['idbrancheactuelle'];
@@ -85,6 +93,7 @@ session_start();
             $resume = $lignehistoire['histoire_resume'];
             $nombre_essai = $lignehistoire['histoire_nombre_essai'];
             $nombre_reussite = $lignehistoire['histoire_nombre_reussite'];
+            $vie=$lignehistoire['histoire_vie'];
 
 
 
@@ -144,6 +153,12 @@ session_start();
 
                     <h3 class="stat">Nombre d'essai : <?=$nombre_essai?></h3>
                     <h3 class="stat">Nombre de réussite : <?=$nombre_reussite?></h3>
+            <h3>
+                    <form  class="stat"  action="pageHistoireAdmin.php?id=<?=$id?>#inputvie " method="POST">
+                    <label><b>Vie initiale </b></label>
+                    <input type="number" id="inputvie" name="vie" value=<?= $vie ?>>
+            </h3>
+                </form>
             </br>
             </br>
      

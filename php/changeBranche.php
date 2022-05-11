@@ -95,7 +95,7 @@ session_start();
             </div>
         </main>
     <?php } else {
-        echo "aaaaa";
+
         header('location: ../index.php');
         exit;
     }
