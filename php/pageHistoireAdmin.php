@@ -156,16 +156,27 @@ session_start();
                 $idbranchebandeau = $branchebandeau['branche_id'];
             ?>
                 <div id="<?=$idbranchebandeau?>" class="branche" tabindex="0">
-                    <div class="container bandeauBranche">
+                    <div class="container bandeauBranche<?php
+                if ($idbranchebandeau==$idbranche)
+                {
+                    echo " premierebranche";
+                }
+
+                ?>">
                         <h4>
                                         <form action="fonctions/changebranche.php?idhistoire=<?=$id?>&idbranche=<?=$idbranchebandeau?>" method="POST">
                                 <input type="text" class="titrebranche" name="titrebranche" value='<?=$titrebandeau?>'>
                             </form>
                             
                         </h4>
+                        <div>
+                        <a href="fonctions/premiereBranche.php?idhistoire=<?=$id?>&idbranche=<?=$idbranchebandeau?>">
+                        <img class="boutonbranche droite" src=../images/first.webp alt="symbole Poubelle">
+                    </a>
                         <a href="fonctions/supprimeBranche.php?idbranche=<?= $idbranchebandeau ?>&idhistoire=<?= $id ?>">
                             <img class="boutonbranche droite" src=../images/poubelle.jpg alt="symbole Poubelle">
                         </a>
+                        </div>
                     </div>
                     <ul>
                         <h5>Branche précédente: 

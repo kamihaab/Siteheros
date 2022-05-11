@@ -79,7 +79,7 @@ session_start();
                     </br>
 
                     <label><b>Titre du paragraphe</b></label>
-                    <input type="text" placeholder="titre" name="titre" value=<?= $titre ?>>
+                    <input type="text" placeholder="titre" name="titre" value="<?= $titre ?>">
 
                     <label><b> Image</b></label>
                     <input type="file" placeholder="image" name="image">
