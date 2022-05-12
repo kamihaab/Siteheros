@@ -167,7 +167,8 @@ session_start();
             $sql = "SELECT * FROM branche WHERE branche_histoire_id='$id'";
             $res1 = $bdd->query($sql);
             while ($branchebandeau = $res1->fetch()) {
-                $titrebandeau = $branchebandeau['branche_titre'];
+                
+                $titrebandeau = htmlspecialchars($branchebandeau['branche_titre'], ENT_QUOTES);
                 $idbranchebandeau = $branchebandeau['branche_id'];
             ?>
                 <div id="<?=$idbranchebandeau?>" class="branche" tabindex="0">
@@ -228,7 +229,7 @@ session_start();
                         while ($brancheprecedente = $res2->fetch()) {
                             $titrebrancheprecendente = $brancheprecedente['branche_titre'];
                             $branche_idprecedente = $brancheprecedente['branche_id'];
-                            $nombouton=$brancheprecedente['brancheabranche_nombouton'];
+                            $nombouton=htmlspecialchars($brancheprecedente['brancheabranche_nombouton'], ENT_QUOTES);
                         ?>
                             <li>
                                 <div class="container">
@@ -288,7 +289,7 @@ session_start();
                         while ($branchesuivante = $res2->fetch()) {
                             $titrebranchesuivante = $branchesuivante['branche_titre'];
                             $branche_idsuivante = $branchesuivante['branche_id'];
-                            $nombouton=$branchesuivante['brancheabranche_nombouton'];
+                            $nombouton=htmlspecialchars($branchesuivante['brancheabranche_nombouton'], ENT_QUOTES);
                         ?>
                             <li>
                                 <div class="container">

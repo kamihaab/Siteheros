@@ -25,7 +25,7 @@ create table histoire(
 
 create table branche(
     branche_id integer not null primary key auto_increment,
-    branche_titre varchar(20),
+    branche_titre varchar(50),
     branche_paragraphe varchar(500) DEFAULT "pararagraphe à rentrer",
     branche_image varchar(150) DEFAULT "defaultimage",
     branche_histoire_id integer,
@@ -43,7 +43,7 @@ create table histoireEnCours (
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
 
 create table brancheabranche (
-    brancheabranche_nombouton varchar(20) DEFAULT 'vers autre branche',
+    brancheabranche_nombouton varchar(50) DEFAULT 'vers autre branche',
     brancheabranche_brancheactuelle_id integer,
     brancheabranche_branchesuivante_id integer,
     FOREIGN KEY (brancheabranche_brancheactuelle_id) references branche(branche_id) ON DELETE CASCADE,
